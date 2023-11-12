@@ -12,7 +12,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
     with TickerProviderStateMixin {
   AnimationController? controller;
   Animation<double>? animation;
-  bool reverse = true;
+
   @override
   void initState() {
     super.initState();
@@ -78,11 +78,13 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                   transform: Transform.translate(
                     offset: Offset(0, animation!.value),
                   ).transform,
-                  child: Image.asset('assets/welcome.png')),
+                  child: Hero(
+                      tag: "welcome",
+                      child: Image.asset('assets/welcome.png'))),
               Spacer(),
               ElevatedButton(
                 onPressed: () {
-                  // Navigator.popAndPushNamed(context, "/tabScreen");
+                  Navigator.pushNamed(context, "/auth");
                 },
                 style: ElevatedButton.styleFrom(
                     backgroundColor: kdarkBlue,

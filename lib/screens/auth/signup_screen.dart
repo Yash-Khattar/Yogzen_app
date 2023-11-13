@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yogzen/components/textfield.dart';
 import 'package:yogzen/global/color.dart';
+import 'package:yogzen/services/auth_services.dart';
 
 class Signup extends StatelessWidget {
   const Signup(
@@ -42,7 +43,12 @@ class Signup extends StatelessWidget {
           ),
           const Spacer(flex: 2),
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              AuthServices().postSignUp(
+                  name: nameController.text,
+                  email: emailController.text,
+                  password: passwordController.text);
+            },
             child: Container(
               width: double.infinity,
               height: 50,

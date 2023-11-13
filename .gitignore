@@ -44,3 +44,4 @@ app.*.map.json
 /android/app/release
 
 /server/constant/const.go
+/lib/global/baseurl.dart

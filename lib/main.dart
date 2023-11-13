@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:yogzen/components/nav_bar.dart';
+import 'package:yogzen/components/nav_bar_screen.dart';
 import 'package:yogzen/global/color.dart';
 import 'package:yogzen/screens/auth/auth_screen.dart';
 import 'package:yogzen/screens/welcome/welcome_screen.dart';
@@ -40,11 +42,12 @@ class MyApp extends StatelessWidget {
           )),
       routes: {
         AuthScreen.routeName: (context) => AuthScreen(),
+        NavScreen.routeName: (context) => NavScreen(),
         // YogGuru.routeName: (context) => YogGuru(),
         // Camera.routeName: (context) => Camera(),
         // SpecificNeeds.routeName: (context) => SpecificNeeds(),
       },
-      home: WelcomeScreen(),
+      home: NavScreen(),
     );
   }
 }

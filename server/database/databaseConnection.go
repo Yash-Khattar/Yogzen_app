@@ -3,7 +3,7 @@ package database
 import (
 	"context"
 	"fmt"
-	"github/Yash-Khattar/yogzen-server/constant"
+
 	"log"
 	"os"
 	"time"
@@ -16,7 +16,7 @@ import (
 
 
 
-
+// MongoDb connection
 func DBinstance() *mongo.Client {
 	err := godotenv.Load(".env")
 	if err != nil {
@@ -42,7 +42,7 @@ client, err := mongo.Connect(ctx, clientOption)
 var Client *mongo.Client = DBinstance()
 
 func OpenCollection(client *mongo.Client, collectionName string) *mongo.Collection{
-var	collection *mongo.Collection = client.Database(constant.DbName).Collection(collectionName)
+var	collection *mongo.Collection = client.Database("Yogzen").Collection(collectionName)
 return collection
 }
 

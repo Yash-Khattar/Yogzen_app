@@ -12,7 +12,7 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	// "go.mongodb.org/mongo-driver/mongo/options"
 )
 
 type SignedDetails struct {
@@ -53,28 +53,34 @@ func GenerateAllToken(email string, name string, userType string, uid string) (s
 func UpdateAllToken(signedToken string, signedRefreshToken string, userId string) {
 	var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
 	defer cancel()
+
 	var updateObj primitive.D
 
 	updateObj = append(updateObj, bson.E{"token", signedToken})
-	updateObj = append(updateObj, bson.E{"refresh_token", signedRefreshToken})
+	updateObj = append(updateObj, bson.E{"refreshtoken", signedRefreshToken})
+
 	Updated_at, _ := time.Parse(time.RFC3339, time.Now().Format(time.RFC3339))
-	updateObj = append(updateObj, bson.E{"updated_at", Updated_at})
+	updateObj = append(updateObj, bson.E{"updatedat", Updated_at})
 
-	upsert := true
-	filter := bson.M{"user_id": userId}
-	opt := options.UpdateOptions{
-		Upsert: &upsert,
-	}
+	// upsert := true
+	filter := bson.M{"userid": userId}
+	// opt := options.UpdateOptions{
+	// 	// Upsert: &upsert,
+	// }
 
-	_, err := userCollection.UpdateOne(ctx, filter, bson.D{
-		{"$set", updateObj},
-	}, &opt)
+	_, err := userCollection.UpdateOne(
+		ctx,
+		filter,
+		bson.D{
+			{"$set", updateObj},
+		},
+		// &opt,
+	)
+
 	if err != nil {
 		log.Panic(err)
 		return
 	}
-	return
-
 }
 
 func ValidateToken(signedToken string) (claims *SignedDetails, msg string) {

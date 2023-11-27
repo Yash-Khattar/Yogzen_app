@@ -27,6 +27,8 @@ func main() {
 			"message": "Welcome to Yogzen",
 		})
 	})
+
+	//routers
 	routes.AuthRouter(router)
 	routes.UserRoutes(router)
 	router.Run(":" + port)

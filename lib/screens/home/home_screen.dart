@@ -3,6 +3,8 @@ import 'package:yogzen/global/color.dart';
 import 'package:yogzen/screens/home/components/mediatation_card.dart';
 import 'dart:math' as math;
 
+import 'package:yogzen/screens/home/components/yoga_card.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -51,13 +53,14 @@ class _HomeScreenState extends State<HomeScreen> {
               height: height * 0.3,
               width: width,
               decoration: BoxDecoration(
-                image: DecorationImage(
-                  opacity: 0.3,
-                  image: Image.asset(
-                    "assets/mountain.jpeg",
-                  ).image,
-                  fit: BoxFit.cover,
-                ),
+                // image: DecorationImage(
+                //   opacity: 0.3,
+                //   image: Image.asset(
+                //     "assets/mountain.jpeg",
+                //   ).image,
+                //   fit: BoxFit.cover,
+                // ),
+
                 color: kdarkBlue,
               ),
               child: Column(
@@ -111,10 +114,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       clipBehavior: Clip.none,
                       children: [
                         Container(
-                        
                           height: height * 0.12,
                           width: width * 0.8,
-                          decoration: const BoxDecoration(
+                          decoration: BoxDecoration(
                             color: kdarkBlueMuted,
                             borderRadius: BorderRadius.only(
                               topRight: Radius.circular(100),
@@ -180,12 +182,18 @@ class _HomeScreenState extends State<HomeScreen> {
             // meditation
 
             Padding(
-              padding: const EdgeInsets.only(left: 16, top: 24, bottom: 22),
+              padding: const EdgeInsets.only(left: 16, top: 24, bottom: 20),
               child: Text("Meditation",
                   style: Theme.of(context).textTheme.headlineMedium),
             ),
 
             const Meditation(),
+            Padding(
+              padding: const EdgeInsets.only(left: 16, bottom: 0),
+              child: Text("Yoga Library",
+                  style: Theme.of(context).textTheme.headlineMedium),
+            ),
+            const YogaCard(),
           ],
         ),
       ),

@@ -175,30 +175,30 @@ class _AuthScreenState extends State<AuthScreen> with TickerProviderStateMixin {
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24),
-            child: GestureDetector(
-              onTap: () {},
-              child: Container(
-                width: double.infinity,
-                height: 50,
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.black),
-                  borderRadius: BorderRadius.circular(16),
-                  color: Colors.white,
-                ),
-                child: const Center(
-                  child: Text(
-                    "Log In with Google",
-                    style: TextStyle(),
-                  ),
-                ),
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 40,
-          ),
+          // Padding(
+          //   padding: const EdgeInsets.symmetric(horizontal: 24),
+          //   child: GestureDetector(
+          //     onTap: () {},
+          //     child: Container(
+          //       width: double.infinity,
+          //       height: 50,
+          //       decoration: BoxDecoration(
+          //         border: Border.all(color: Colors.black),
+          //         borderRadius: BorderRadius.circular(16),
+          //         color: Colors.white,
+          //       ),
+          //       child: const Center(
+          //         child: Text(
+          //           "Log In with Google",
+          //           style: TextStyle(),
+          //         ),
+          //       ),
+          //     ),
+          //   ),
+          // ),
+          // const SizedBox(
+          //   height: 40,
+          // ),
         ],
       ),
     );

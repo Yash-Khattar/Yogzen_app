@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
         // Camera.routeName: (context) => Camera(),
         // SpecificNeeds.routeName: (context) => SpecificNeeds(),
       },
-      home: NavScreen(),
+      home: WelcomeScreen(),
     );
   }
 }

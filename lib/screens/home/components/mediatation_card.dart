@@ -25,7 +25,7 @@ class _MeditationState extends State<Meditation> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return SizedBox(
-      height: height * 0.25,
+      height: height * 0.24,
       child: PageView.builder(
         clipBehavior: Clip.none,
         controller: pageController,
@@ -48,8 +48,7 @@ class _MeditationState extends State<Meditation> {
                   children: [
                     Container(
                       clipBehavior: Clip.none,
-                      margin:
-                          const EdgeInsets.only(left: 8, right: 8, bottom: 24),
+                      margin: const EdgeInsets.only(left: 8, right: 8),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(12),
@@ -73,7 +72,7 @@ class _MeditationState extends State<Meditation> {
                       ),
                     ),
                     Positioned(
-                      bottom: 60,
+                      bottom: height * 0.052,
                       left: 30,
                       child: Text(
                         "Meditation ${index + 1}",

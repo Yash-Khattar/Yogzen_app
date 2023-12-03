@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func AuthRouter(incomingRouter *gin.Engine) {
-	incomingRouter.POST("auth/signup", controller.Signup())
-	incomingRouter.POST("auth/login", controller.Login())
+func AuthRouter(incomingRoutes *gin.Engine) {
+	incomingRoutes.POST("auth/signup", controller.Signup())
+	incomingRoutes.POST("auth/login", controller.Login())
 }

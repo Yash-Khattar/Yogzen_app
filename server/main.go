@@ -7,7 +7,10 @@ import (
 	routes "github/Yash-Khattar/yogzen-server/routes"
 	"os"
 
+	"log"
+
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 )
 
 func main() {
@@ -15,6 +18,10 @@ func main() {
 	// r := router.Router()
 	// log.Fatal(http.ListenAndServe(":3000", r))
 	// fmt.Println("connection success")
+	err := godotenv.Load(".env")
+	if err != nil {
+		log.Fatal("error loading env file")
+	}
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = "3000"

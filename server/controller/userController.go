@@ -9,6 +9,7 @@ import (
 	"log"
 	"net/http"
 	"time"
+
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
 	"go.mongodb.org/mongo-driver/bson"
@@ -20,7 +21,7 @@ import (
 var userCollection *mongo.Collection = database.OpenCollection(database.Client, "user")
 var validate = validator.New()
 
-//hashing password
+// hashing password
 func HashPassword(password string) string {
 	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(password), 14)
 	if err != nil {
@@ -29,7 +30,7 @@ func HashPassword(password string) string {
 	return string(hashedPassword)
 }
 
-//verifying password
+// verifying password
 func VerifyPassword(userPassword string, providedPassword string) (bool, string) {
 	err := bcrypt.CompareHashAndPassword([]byte(providedPassword), []byte(userPassword))
 	check := true
@@ -42,15 +43,18 @@ func VerifyPassword(userPassword string, providedPassword string) (bool, string)
 	return check, msg
 }
 
-//signup
+// signup
 func Signup() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
 		defer cancel()
 		var user model.User
-
+		fmt.Print("hello")
+		
+		fmt.Print(c)
 		//binding user data from request to user struct
 		if err := c.BindJSON(&user); err != nil {
+			fmt.Print(&user)
 			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 			return
 		}

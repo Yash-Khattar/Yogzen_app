@@ -44,11 +44,12 @@ class Signup extends StatelessWidget {
           const Spacer(flex: 2),
           GestureDetector(
             onTap: () {
-              Navigator.pushNamed(context, '/tabScreen');
               AuthServices().postSignUp(
                   name: nameController.text,
                   email: emailController.text,
                   password: passwordController.text);
+              AuthServices().getYogzen();
+              Navigator.pushNamed(context, '/tabScreen');
             },
             child: Container(
               width: double.infinity,

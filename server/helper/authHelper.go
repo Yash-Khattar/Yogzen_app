@@ -8,7 +8,7 @@ import (
 )
 
 func CheckUserType(c *gin.Context, role string) (err error){
-	userType := c.GetString("user_type")
+	userType := c.GetString("userType")
 	err = nil
 	if userType != role {
 		err = errors.New("Unauthorized to access this resource")
@@ -18,7 +18,7 @@ func CheckUserType(c *gin.Context, role string) (err error){
 }
 
 func MachUserTypeToUid(c *gin.Context, userId string) (err error){
-	userType := c.GetString("user_type")
+	userType := c.GetString("userType")
 	uid := c.GetString("uid")
 	err = nil
 	if userType == "USER" && uid != userId {

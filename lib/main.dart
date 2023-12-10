@@ -1,17 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:yogzen/components/nav_bar.dart';
+import 'package:provider/provider.dart';
 import 'package:yogzen/components/nav_bar_screen.dart';
 import 'package:yogzen/global/color.dart';
+import 'package:yogzen/providers/user_provider.dart';
 import 'package:yogzen/screens/auth/auth_screen.dart';
 import 'package:yogzen/screens/welcome/welcome_screen.dart';
+import 'package:yogzen/services/auth_services.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => UserProvider()),
+      ],
+      child: MyApp(),
+    ),
+  );
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyApp extends StatefulWidget {
+  MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  AuthServices authServices = AuthServices();
+
+  @override
+  void initState() {
+    super.initState();
+    // authServices.clearSharedPrefs();
+    authServices.getUserData(context: context);
+  }
 
   // This widget is the root of your application.
   @override
@@ -47,7 +70,9 @@ class MyApp extends StatelessWidget {
         // Camera.routeName: (context) => Camera(),
         // SpecificNeeds.routeName: (context) => SpecificNeeds(),
       },
-      home: WelcomeScreen(),
+      home: Provider.of<UserProvider>(context).user.token.isNotEmpty
+          ? NavScreen()
+          : WelcomeScreen(),
     );
   }
 }

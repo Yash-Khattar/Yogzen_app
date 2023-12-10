@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yogzen/components/textfield.dart';
 import 'package:yogzen/global/color.dart';
+import 'package:yogzen/services/auth_services.dart';
 
 class Login extends StatelessWidget {
   const Login(
@@ -39,7 +40,12 @@ class Login extends StatelessWidget {
               )),
           const Spacer(flex: 2),
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              AuthServices().postLogin(
+                  context: context,
+                  email: emailController.text,
+                  password: passwordController.text);
+            },
             child: Container(
               width: double.infinity,
               height: 50,

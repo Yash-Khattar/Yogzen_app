@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:yogzen/global/color.dart';
+import 'package:yogzen/providers/user_provider.dart';
 import 'package:yogzen/screens/home/components/mediatation_card.dart';
 import 'dart:math' as math;
 
@@ -43,6 +45,8 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+    final user = Provider.of<UserProvider>(context).user;
+
     return Scaffold(
       backgroundColor: klightBlue,
       body: SingleChildScrollView(
@@ -68,7 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   const Spacer(),
                   Container(
                     padding: const EdgeInsets.only(top: 30, left: 12),
-                    child: const Row(
+                    child: Row(
                       children: [
                         // IconButton(
                         //   onPressed: () {},
@@ -86,7 +90,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Good Morning, Yash',
+                              'Good Morning, ${user.name}',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 18,

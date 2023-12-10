@@ -7,34 +7,24 @@ class User {
   final String password;
   final String userid;
   final String userType;
+  final String token;
   User({
     required this.name,
     required this.email,
     required this.password,
     required this.userid,
     required this.userType,
+    required this.token,
   });
-
-  User copyWith({
-    String? name,
-    String? email,
-    String? password,
-    String? id,
-  }) {
-    return User(
-      name: name ?? this.name,
-      email: email ?? this.email,
-      password: password ?? this.password,
-      userid: id ?? this.userid, userType: '',
-    );
-  }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'name': name,
       'email': email,
       'password': password,
-      'id': userid,
+      'user_id': userid,
+      'userType': userType,
+      'token': token,
     };
   }
 
@@ -43,7 +33,9 @@ class User {
       name: map['name'] as String,
       email: map['email'] as String,
       password: map['password'] as String,
-      userid: map['userid'] as String, userType: '',
+      userid: map['user_id'] as String,
+      userType: map['userType'] as String,
+      token: map['token'] as String,
     );
   }
 
@@ -51,24 +43,4 @@ class User {
 
   factory User.fromJson(String source) =>
       User.fromMap(json.decode(source) as Map<String, dynamic>);
-
-  @override
-  String toString() {
-    return 'User(name: $name, email: $email, password: $password, id: $userid)';
-  }
-
-  @override
-  bool operator ==(covariant User other) {
-    if (identical(this, other)) return true;
-
-    return other.name == name &&
-        other.email == email &&
-        other.password == password &&
-        other.userid == userid;
-  }
-
-  @override
-  int get hashCode {
-    return name.hashCode ^ email.hashCode ^ password.hashCode ^ userid.hashCode;
-  }
 }

@@ -49,12 +49,10 @@ func Signup() gin.HandlerFunc {
 		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
 		defer cancel()
 		var user model.User
-		fmt.Print("hello")
-		
-		fmt.Print(c)
+
 		//binding user data from request to user struct
 		if err := c.BindJSON(&user); err != nil {
-			fmt.Print(&user)
+
 			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 			return
 		}

@@ -13,7 +13,7 @@ type User struct {
 	Password     *string            `json:"password"`
 	Token        *string            `json:"token"`
 	RefreshToken *string            `json:"refresh_token"`
-	UserType     *string            `json:"user_type"`
+	UserType     *string            `json:"userType"`
 	AvatarImage  *string            `json:"avatar_image"`
 	CreatedAt    time.Time          `json:"created_at"`
 	UpdatedAt    time.Time          `json:"updated_at"`

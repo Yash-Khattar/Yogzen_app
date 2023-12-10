@@ -28,9 +28,9 @@ YogZen is an open-source project, and we welcome contributions from the communit
 ## Installation Guide
 1. Clone the repository: git clone https://github.com/Yash-Khattar/augd_yogzen.git
 2. Install project dependencies and start the development environment: In the root directory of the project run flutter run.
-3. Make sure to install Go and Firebase and set up the required environment variables such as database connection details, API keys, and other configurations.
+3. Make sure to install Go and set up the required environment variables such as database connection details, API keys, and other configurations.
 
 # Feedback
-We value your feedback! If you have any suggestions, encounter issues, or want to share your success stories, feel free to create an issue or reach out to us at yogzen.official@gmail.com.
+We value your feedback! If you have any suggestions, encounter issues, or want to share your success stories, feel free to create an issue or reach out to us at yogzen.app@gmail.com.
 
 Start your journey to wellness with YogZen today! 🧘‍♀️🌿🌟

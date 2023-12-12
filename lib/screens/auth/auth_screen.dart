@@ -64,142 +64,149 @@ class _AuthScreenState extends State<AuthScreen> with TickerProviderStateMixin {
     super.dispose();
   }
 
+// - 120 + MediaQuery.sizeOf(context).height * 0.76
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: klightBlue,
+        scrolledUnderElevation: 0,
+        backgroundColor: klightBlue.withOpacity(0),
+        elevation: 0,
       ),
       backgroundColor: klightBlue,
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const SizedBox(
-            height: 20,
-          ),
-          Center(
-            child: AnimatedContainer(
-              duration: const Duration(milliseconds: 1500),
-              transform: Transform.translate(
-                offset: Offset(0, animation!.value),
-              ).transform,
-              child: Hero(
-                tag: "welcome",
-                child: Image.asset(
-                  'assets/welcome.png',
-                  scale: 1.2,
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const SizedBox(
+              height: 20,
+            ),
+            Center(
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 1500),
+                transform: Transform.translate(
+                  offset: Offset(0, animation!.value),
+                ).transform,
+                child: Hero(
+                  tag: "welcome",
+                  child: Image.asset(
+                    'assets/welcome.png',
+                    scale: 1.2,
+                  ),
                 ),
               ),
             ),
-          ),
-          const SizedBox(
-            height: 40,
-          ),
-          Container(
-            height: 60,
-            decoration: const BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.all(
-                Radius.circular(16),
-              ),
+            const SizedBox(
+              height: 40,
             ),
-            child: Theme(
-              data: Theme.of(context).copyWith(
-                colorScheme: Theme.of(context).colorScheme.copyWith(
-                      surfaceVariant: Colors.transparent,
-                    ),
-              ),
-              child: TabBar(
-                tabs: [
-                  Tab(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        color: activeTabIndex == 0 ? kdarkBlue : Colors.white,
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 50, vertical: 10),
-                        child: Text(
-                          'Sign Up',
-                          style: TextStyle(
-                              color: activeTabIndex == 0
-                                  ? Colors.white
-                                  : Colors.black),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Tab(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        color: activeTabIndex == 1 ? kdarkBlue : Colors.white,
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 50, vertical: 10),
-                        child: Text(
-                          'Log In',
-                          style: TextStyle(
-                              color: activeTabIndex == 1
-                                  ? Colors.white
-                                  : Colors.black),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-                indicator: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  // color: kdarkBlue,
+            Container(
+              height: 60,
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.all(
+                  Radius.circular(16),
                 ),
-                controller: _tabController,
-                isScrollable: true,
+              ),
+              child: Theme(
+                data: Theme.of(context).copyWith(
+                  colorScheme: Theme.of(context).colorScheme.copyWith(
+                        surfaceVariant: Colors.transparent,
+                      ),
+                ),
+                child: TabBar(
+                  tabs: [
+                    Tab(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          color: activeTabIndex == 0 ? kdarkBlue : Colors.white,
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 50, vertical: 10),
+                          child: Text(
+                            'Sign Up',
+                            style: TextStyle(
+                                color: activeTabIndex == 0
+                                    ? Colors.white
+                                    : Colors.black),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Tab(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          color: activeTabIndex == 1 ? kdarkBlue : Colors.white,
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 50, vertical: 10),
+                          child: Text(
+                            'Log In',
+                            style: TextStyle(
+                                color: activeTabIndex == 1
+                                    ? Colors.white
+                                    : Colors.black),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                  indicator: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    // color: kdarkBlue,
+                  ),
+                  controller: _tabController,
+                  isScrollable: true,
 
-                // labelPadding: EdgeInsets.symmetric(horizontal: 40, vertical: 4),
+                  // labelPadding: EdgeInsets.symmetric(horizontal: 40, vertical: 4),
+                ),
               ),
             ),
-          ),
-          Expanded(
-            child: TabBarView(
-              controller: _tabController,
-              children: [
-                Signup(
-                    emailController: emailController,
-                    passwordController: passwordController,
-                    nameController: nameController),
-                Login(
-                    emailController: emailController,
-                    passwordController: passwordController),
-              ],
-            ),
-          ),
-          // Padding(
-          //   padding: const EdgeInsets.symmetric(horizontal: 24),
-          //   child: GestureDetector(
-          //     onTap: () {},
-          //     child: Container(
-          //       width: double.infinity,
-          //       height: 50,
-          //       decoration: BoxDecoration(
-          //         border: Border.all(color: Colors.black),
-          //         borderRadius: BorderRadius.circular(16),
-          //         color: Colors.white,
-          //       ),
-          //       child: const Center(
-          //         child: Text(
-          //           "Log In with Google",
-          //           style: TextStyle(),
-          //         ),
-          //       ),
-          //     ),
-          //   ),
-          // ),
-          // const SizedBox(
-          //   height: 40,
-          // ),
-        ],
+            SizedBox(
+              height: MediaQuery.sizeOf(context).height * 0.44,
+              child: TabBarView(
+                controller: _tabController,
+                children: [
+                  Signup(
+                      emailController: emailController,
+                      passwordController: passwordController,
+                      nameController: nameController),
+                  Login(
+                      emailController: emailController,
+                      passwordController: passwordController),
+                ],
+              ),
+            )
+
+            // Padding(
+            //   padding: const EdgeInsets.symmetric(horizontal: 24),
+            //   child: GestureDetector(
+            //     onTap: () {},
+            //     child: Container(
+            //       width: double.infinity,
+            //       height: 50,
+            //       decoration: BoxDecoration(
+            //         border: Border.all(color: Colors.black),
+            //         borderRadius: BorderRadius.circular(16),
+            //         color: Colors.white,
+            //       ),
+            //       child: const Center(
+            //         child: Text(
+            //           "Log In with Google",
+            //           style: TextStyle(),
+            //         ),
+            //       ),
+            //     ),
+            //   ),
+            // ),
+            // const SizedBox(
+            //   height: 40,
+            // ),
+          ],
+        ),
       ),
     );
   }

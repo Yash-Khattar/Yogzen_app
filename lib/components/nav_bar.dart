@@ -55,9 +55,22 @@ class _NavBarState extends State<NavBar> {
               IconButton(
                 onPressed: () => widget.change(1),
                 icon: Icon(
-                  Icons.person,
+                  Icons.vertical_align_bottom_rounded,
                   size: 30,
                   color: widget.idx == 1
+                      ? kdarkBlue
+                      : kblackSubHeading.withOpacity(0.3),
+                ),
+              ),
+              SizedBox(
+                width: 60,
+              ),
+              IconButton(
+                onPressed: () => widget.change(2),
+                icon: Icon(
+                  Icons.person,
+                  size: 30,
+                  color: widget.idx == 2
                       ? kdarkBlue
                       : kblackSubHeading.withOpacity(0.3),
                 ),

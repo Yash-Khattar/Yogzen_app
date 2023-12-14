@@ -138,7 +138,7 @@ class AuthServices {
       print(response.body);
       print(response.statusCode);
     } catch (e) {
-      showSnackBar(context: context, text: e.toString());
+      print(e.toString());
     }
   }
 

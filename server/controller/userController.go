@@ -23,7 +23,7 @@ var validate = validator.New()
 
 // hashing password
 func HashPassword(password string) string {
-	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(password), 14)
+	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(password), 4)
 	if err != nil {
 		log.Panic(err)
 	}

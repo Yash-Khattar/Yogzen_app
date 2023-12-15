@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:yogzen/screens/home/specific_needs/yoga_card_sn.dart';
+import 'package:yogzen/screens/specific_needs/yoga_card_sn.dart';
 
-import '../../../global/color.dart';
-import '../../../providers/user_provider.dart';
+import '../../global/color.dart';
+import '../../providers/user_provider.dart';
 
 class SpecificNeedsScreen extends StatefulWidget {
   const SpecificNeedsScreen({super.key});

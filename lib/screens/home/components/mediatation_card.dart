@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
+import 'package:yogzen/screens/meditation/meditation_screen.dart';
+
 class Meditation extends StatefulWidget {
   const Meditation({super.key});
 
@@ -33,57 +35,63 @@ class _MeditationState extends State<Meditation> {
         itemBuilder: (context, index) {
           // double offset = pageOffset - index;
 
-          return AnimatedBuilder(
-            animation: pageController,
-            builder: (context, child) {
-              double pageOffset = 0;
-              if (pageController.position.haveDimensions) {
-                pageOffset = pageController.page! - index;
-              }
-              double gauss =
-                  math.exp(-(math.pow((pageOffset.abs() - 0.5), 2) / 0.08));
-              return Transform.translate(
-                offset: Offset(-32 * gauss * pageOffset.sign, 0),
-                child: Stack(
-                  children: [
-                    Container(
-                      clipBehavior: Clip.none,
-                      margin: const EdgeInsets.only(left: 8, right: 8),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(12),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.1),
-                            offset: const Offset(8, 20),
-                            blurRadius: 24,
+          return 
+            GestureDetector(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => MeditationScreen()));
+              },
+              child: AnimatedBuilder(
+              animation: pageController,
+              builder: (context, child) {
+                double pageOffset = 0;
+                if (pageController.position.haveDimensions) {
+                  pageOffset = pageController.page! - index;
+                }
+                double gauss =
+                    math.exp(-(math.pow((pageOffset.abs() - 0.5), 2) / 0.08));
+                return Transform.translate(
+                  offset: Offset(-32 * gauss * pageOffset.sign, 0),
+                  child: Stack(
+                    children: [
+                      Container(
+                        clipBehavior: Clip.none,
+                        margin: const EdgeInsets.only(left: 8, right: 8),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(12),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.1),
+                              offset: const Offset(8, 20),
+                              blurRadius: 24,
+                            ),
+                          ],
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(12),
+                          child: Image.asset(
+                            'assets/meditation/img${index + 1}.jpeg',
+                            height: height * 0.2,
+                            width: width,
+                            alignment: Alignment(-pageOffset.abs(), 0),
+                            fit: BoxFit.none,
                           ),
-                        ],
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(12),
-                        child: Image.asset(
-                          'assets/meditation/img${index + 1}.jpeg',
-                          height: height * 0.2,
-                          width: width,
-                          alignment: Alignment(-pageOffset.abs(), 0),
-                          fit: BoxFit.none,
                         ),
                       ),
-                    ),
-                    Positioned(
-                      bottom: height * 0.052,
-                      left: 30,
-                      child: Text(
-                        "Meditation ${index + 1}",
-                        style: const TextStyle(color: Colors.white),
+                      Positioned(
+                        bottom: height * 0.052,
+                        left: 30,
+                        child: Text(
+                          "Meditation ${index + 1}",
+                          style: const TextStyle(color: Colors.white),
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              );
-            },
-          );
+                    ],
+                  ),
+                );
+              },
+                      ),
+            );
         },
       ),
     );

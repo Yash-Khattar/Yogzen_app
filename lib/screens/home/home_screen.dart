@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yogzen/global/color.dart';
 import 'package:yogzen/providers/user_provider.dart';
+import 'package:yogzen/screens/challenge/challenge_screen.dart';
 import 'package:yogzen/screens/home/components/mediatation_card.dart';
 import 'dart:math' as math;
 
@@ -155,7 +156,9 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                               const SizedBox(height: 6),
                               GestureDetector(
-                                onTap: () {},
+                                onTap: () {
+                                  Navigator.push(context, MaterialPageRoute(builder: ((context) => ChallengeScreen())));
+                                },
                                 child: Container(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 60, vertical: 8),

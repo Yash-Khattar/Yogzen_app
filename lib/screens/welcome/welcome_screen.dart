@@ -3,6 +3,7 @@ import 'package:yogzen/global/color.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
+  static const routeName = '/welcome';
 
   @override
   State<WelcomeScreen> createState() => _WelcomeScreenState();

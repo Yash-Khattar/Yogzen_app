@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yogzen/components/nav_bar.dart';
 import 'package:yogzen/screens/home/home_screen.dart';
-import 'package:yogzen/screens/home/specific_needs/specific_needs.dart';
+import 'package:yogzen/screens/specific_needs/specific_needs.dart';
 import 'package:yogzen/screens/userprofile/user_profile.dart';
 
 class NavScreen extends StatefulWidget {

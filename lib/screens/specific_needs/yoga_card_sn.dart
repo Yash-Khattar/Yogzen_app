@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../global/color.dart';
+import '../../global/color.dart';
 
 class YogaCardSN extends StatelessWidget {
   const YogaCardSN({super.key});

@@ -55,7 +55,7 @@ class _NavBarState extends State<NavBar> {
               IconButton(
                 onPressed: () => widget.change(1),
                 icon: Icon(
-                  Icons.vertical_align_bottom_rounded,
+                  Icons.health_and_safety,
                   size: 30,
                   color: widget.idx == 1
                       ? kdarkBlue

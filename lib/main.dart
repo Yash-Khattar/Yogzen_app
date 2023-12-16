@@ -5,6 +5,7 @@ import 'package:yogzen/components/nav_bar_screen.dart';
 import 'package:yogzen/global/color.dart';
 import 'package:yogzen/providers/user_provider.dart';
 import 'package:yogzen/screens/auth/auth_screen.dart';
+import 'package:yogzen/screens/chatbot.dart/chatbot.dart';
 import 'package:yogzen/screens/welcome/welcome_screen.dart';
 import 'package:yogzen/services/auth_services.dart';
 
@@ -66,6 +67,7 @@ class _MyAppState extends State<MyApp> {
       routes: {
         AuthScreen.routeName: (context) => AuthScreen(),
         NavScreen.routeName: (context) => NavScreen(),
+        ChatScreen.routeName: (context) => ChatScreen(),
         // YogGuru.routeName: (context) => YogGuru(),
         // Camera.routeName: (context) => Camera(),
         // SpecificNeeds.routeName: (context) => SpecificNeeds(),

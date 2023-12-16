@@ -30,40 +30,46 @@ class YogaCardSN extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Icon(
-            Icons.play_circle_outline_rounded,
-            size: 36,
-            color: kdarkBlueMuted,
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Icon(
+              Icons.play_circle_outline_rounded,
+              size: 36,
+              color: kdarkBlueMuted,
+            ),
           ),
           SizedBox(
             width: 8,
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text("Tada Aasan",
-                  style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 16,
-                      color: kblackHeading)),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Icon(Icons.access_time_rounded,
-                      size: 14, color: Colors.black45),
-                  SizedBox(
-                    width: 4,
-                  ),
-                  Text(
-                    "5 Minutes",
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("Tada Aasan",
                     style: TextStyle(
-                      color: kblackSubHeading,
-                      fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16,
+                        color: kblackHeading)),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Icon(Icons.access_time_rounded,
+                        size: 14, color: Colors.black45),
+                    SizedBox(
+                      width: 4,
                     ),
-                  ),
-                ],
-              )
-            ],
+                    Text(
+                      "5 Minutes",
+                      style: TextStyle(
+                        color: kblackSubHeading,
+                        fontSize: 14,
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
           )
         ],
       ),
@@ -110,42 +116,48 @@ class YogaCardSNBig extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Icon(
-                Icons.play_circle_outline_rounded,
-                size: 36,
-                color: kdarkBlueMuted,
+              FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Icon(
+                  Icons.play_circle_outline_rounded,
+                  size: 36,
+                  color: kdarkBlueMuted,
+                ),
               ),
               SizedBox(
                 width: 8,
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Tada Aasan",
-                    style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 16,
-                        color: kblackHeading),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Icon(Icons.access_time_rounded,
-                          size: 14, color: Colors.black45),
-                      SizedBox(
-                        width: 4,
-                      ),
-                      Text(
-                        "5 Minutes",
-                        style: TextStyle(
-                          color: kblackSubHeading,
-                          fontSize: 14,
+              FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Tada Aasan",
+                      style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 16,
+                          color: kblackHeading),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Icon(Icons.access_time_rounded,
+                            size: 14, color: Colors.black45),
+                        SizedBox(
+                          width: 4,
                         ),
-                      ),
-                    ],
-                  )
-                ],
+                        Text(
+                          "5 Minutes",
+                          style: TextStyle(
+                            color: kblackSubHeading,
+                            fontSize: 14,
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
               )
             ],
           ),

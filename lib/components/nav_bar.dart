@@ -78,12 +78,12 @@ class _NavBarState extends State<NavBar> {
             ],
           ),
         ),
-        Positioned(
-          child: HexagonWidget(),
-          top: -30,
-          left: width / 2 - 30,
-          right: width / 2 - 30,
-        )
+        // Positioned(
+        //   child: HexagonWidget(),
+        //   top: -30,
+        //   left: width / 2 - 30,
+        //   right: width / 2 - 30,
+        // )
       ],
     );
   }

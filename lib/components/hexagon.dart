@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yogzen/global/color.dart';
+import 'package:yogzen/openAI/open_AI.dart';
 
 
 class HexagonClipper extends CustomClipper<Path> {
@@ -47,8 +48,12 @@ class HexagonWidget extends StatelessWidget {
         ),
         height: 68, // Set the height of your hexagon here
         child: IconButton(
+          // onPressed: () async {
+          //   List<String> l= await fetchYogaPose("TadaAsan");
+          //   print(l);
+          // },
           onPressed: () {
-            // Navigator.pushNamed(context, Camera.routeName);
+            
           },
           icon: const Icon(
             Icons.camera,

@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	// "github/Yash-Khattar/yogzen-server/router"
-
+	controller "github/Yash-Khattar/yogzen-server/controller"
 	routes "github/Yash-Khattar/yogzen-server/routes"
 	"os"
 
@@ -34,9 +34,12 @@ func main() {
 			"message": "Welcome to Yogzen",
 		})
 	})
+	// router.POST("/addYoga", controller.AddYoga())
+	router.GET("/api/getAllYoga", controller.GetYoga())
 
 	//routers
 	routes.AuthRouter(router)
 	routes.UserRoutes(router)
+	// routes.YogaRouter(router)
 	router.Run(":" + port)
 }

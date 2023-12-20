@@ -68,6 +68,7 @@ class _MyAppState extends State<MyApp> {
         AuthScreen.routeName: (context) => AuthScreen(),
         NavScreen.routeName: (context) => NavScreen(),
         ChatScreen.routeName: (context) => ChatScreen(),
+        WelcomeScreen.routeName: (context) => WelcomeScreen(),
         // YogGuru.routeName: (context) => YogGuru(),
         // Camera.routeName: (context) => Camera(),
         // SpecificNeeds.routeName: (context) => SpecificNeeds(),

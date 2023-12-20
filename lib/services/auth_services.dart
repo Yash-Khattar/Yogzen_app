@@ -20,8 +20,10 @@ class AuthServices {
         url,
         headers: {"Accept": "application/json"},
       );
-      print(response.body);
-      print(response.statusCode);
+      if (kDebugMode) {
+        print(response.body);
+        print(response.statusCode);
+      }
       if (response.statusCode == 200) {
         print("success");
       } else {
@@ -54,19 +56,19 @@ class AuthServices {
           headers: <String, String>{
             "Content-Type": "application/json; charset=UTF-8"
           });
-      print(response.body);
-      print(response.statusCode);
-      httpErrorHandling(
-          context: context,
-          response: response,
-          onSuccess: () {
-            showSnackBar(
-                context: context,
-                text: "Account created! Log In with same credentials");
-          });
+
+      if (context.mounted) {
+        httpErrorHandling(
+            context: context,
+            response: response,
+            onSuccess: () {
+              postLogin(email: email, password: password, context: context);
+            });
+      }
     } catch (e) {
-      showSnackBar(context: context, text: e.toString());
-      print(e);
+      if (context.mounted) {
+        showSnackBar(context: context, text: e.toString());
+      }
     }
   }
 

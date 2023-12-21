@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"sync"
 	"time"
 
 	// "github/Yash-Khattar/yogzen-server/router"
@@ -57,7 +58,13 @@ func main() {
 	}
 }
 
+var (
+	mu sync.Mutex
+)
+
 func ActivateRender() {
+	mu.Lock()
+	defer mu.Unlock()
 	url := os.Getenv("BASEURL")
 	res, err := http.Get(url)
 	if err != nil {

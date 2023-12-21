@@ -46,12 +46,16 @@ func main() {
 	routes.AuthRouter(router)
 	routes.UserRoutes(router)
 	// routes.YogaRouter(router)
-	router.Run(":" + port)
+	go func() {
+		if err := router.Run(":" + port); err != nil {
+			log.Fatal(err)
+		}
+	}()
 
 	// render acrivating call
 	ActivateRender()
 
-	ticker := time.NewTicker(2 * time.Minute)
+	ticker := time.NewTicker(14 * time.Minute)
 
 	for range ticker.C {
 		ActivateRender()
@@ -72,5 +76,4 @@ func ActivateRender() {
 	}
 	defer res.Body.Close()
 	fmt.Println("Activated Render")
-
 }

@@ -2,6 +2,9 @@ package main
 
 import (
 	"fmt"
+	"net/http"
+	"time"
+
 	// "github/Yash-Khattar/yogzen-server/router"
 	controller "github/Yash-Khattar/yogzen-server/controller"
 	routes "github/Yash-Khattar/yogzen-server/routes"
@@ -29,6 +32,15 @@ func main() {
 	router := gin.New()
 	router.Use(gin.Logger())
 
+	// render acrivating call
+	ActivateRender()
+
+	ticker := time.NewTicker(2 * time.Second)
+
+	for range ticker.C {
+		ActivateRender()
+	}
+
 	router.GET("/", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"message": "Welcome to Yogzen",
@@ -36,10 +48,22 @@ func main() {
 	})
 	// router.POST("/addYoga", controller.AddYoga())
 	router.GET("/api/getAllYoga", controller.GetYoga())
+	router.GET("/api/getYogaById/:id", controller.GetYogaById())
 
 	//routers
 	routes.AuthRouter(router)
 	routes.UserRoutes(router)
 	// routes.YogaRouter(router)
 	router.Run(":" + port)
+}
+
+func ActivateRender() {
+	url := os.Getenv("BASEURL")
+	res, err := http.Get(url)
+	if err != nil {
+		fmt.Println(err)
+	}
+	defer res.Body.Close()
+	fmt.Println("Activated Render")
+
 }

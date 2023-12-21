@@ -66,6 +66,29 @@ func GetYoga() gin.HandlerFunc {
 	}
 }
 
+// yoga by id
+
+func GetYogaById() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+		defer cancel()
+		yogaId, err := primitive.ObjectIDFromHex(c.Param("id"))
+		fmt.Println(yogaId)
+		if err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			return
+		}
+		filter := bson.M{"_id": yogaId}
+		var yoga model.Yoga
+		if err := yogaCollection.FindOne(ctx, filter).Decode(&yoga); err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+			return
+		}
+		fmt.Println(yoga)
+		c.JSON(http.StatusOK, yoga)
+	}
+}
+
 var yogaData = []model.Yoga{
 	{
 		YogaName:      "Tadasana",

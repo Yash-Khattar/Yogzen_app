@@ -51,7 +51,7 @@ func main() {
 	// render acrivating call
 	ActivateRender()
 
-	ticker := time.NewTicker(2 * time.Second)
+	ticker := time.NewTicker(2 * time.Minute)
 
 	for range ticker.C {
 		ActivateRender()

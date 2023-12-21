@@ -32,15 +32,6 @@ func main() {
 	router := gin.New()
 	router.Use(gin.Logger())
 
-	// render acrivating call
-	ActivateRender()
-
-	ticker := time.NewTicker(2 * time.Second)
-
-	for range ticker.C {
-		ActivateRender()
-	}
-
 	router.GET("/", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"message": "Welcome to Yogzen",
@@ -55,6 +46,15 @@ func main() {
 	routes.UserRoutes(router)
 	// routes.YogaRouter(router)
 	router.Run(":" + port)
+
+	// render acrivating call
+	ActivateRender()
+
+	ticker := time.NewTicker(2 * time.Second)
+
+	for range ticker.C {
+		ActivateRender()
+	}
 }
 
 func ActivateRender() {

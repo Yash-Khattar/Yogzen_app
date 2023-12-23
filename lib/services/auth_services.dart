@@ -116,8 +116,9 @@ class AuthServices {
   }
 
   //get user data
-  void getUserData({required BuildContext context}) async {
+  Future<void> getUserData({required BuildContext context}) async {
     //fetching token and user id
+
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString("token");
     String? user_id = prefs.getString("user_id");
@@ -133,12 +134,21 @@ class AuthServices {
           "token": token!,
         },
       );
-      if (context.mounted) {
-        var userProvider = Provider.of<UserProvider>(context, listen: false);
-        userProvider.setUser(response.body);
-      }
+   
+      httpErrorHandling(
+          context: context,
+          response: response,
+          onSuccess: () {
+                print("1");
+            Provider.of<UserProvider>(context, listen: false)
+                .setUser(response.body);
+          });
+      // var userProvider = Provider.of<UserProvider>(context, listen: false);
+      // userProvider.setUser(response.body);
+    
       print(response.body);
       print(response.statusCode);
+     
     } catch (e) {
       print(e.toString());
     }

@@ -4,16 +4,18 @@ import 'package:provider/provider.dart';
 import 'package:yogzen/components/nav_bar_screen.dart';
 import 'package:yogzen/global/color.dart';
 import 'package:yogzen/providers/user_provider.dart';
+import 'package:yogzen/providers/yoga_provider.dart';
 import 'package:yogzen/screens/auth/auth_screen.dart';
 import 'package:yogzen/screens/chatbot.dart/chatbot.dart';
+import 'package:yogzen/screens/splash/splash_screen.dart';
 import 'package:yogzen/screens/welcome/welcome_screen.dart';
-import 'package:yogzen/services/auth_services.dart';
 
 void main() {
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => UserProvider()),
+        ChangeNotifierProvider(create: (context) => YogaProvider()),
       ],
       child: MyApp(),
     ),
@@ -28,15 +30,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  AuthServices authServices = AuthServices();
-
-  @override
-  void initState() {
-    super.initState();
-    // authServices.clearSharedPrefs();
-    authServices.getUserData(context: context);
-  }
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -65,17 +58,16 @@ class _MyAppState extends State<MyApp> {
             ),
           )),
       routes: {
-        AuthScreen.routeName: (context) => AuthScreen(),
-        NavScreen.routeName: (context) => NavScreen(),
+        AuthScreen.routeName: (context) => const AuthScreen(),
+        NavScreen.routeName: (context) => const NavScreen(),
         ChatScreen.routeName: (context) => ChatScreen(),
-        WelcomeScreen.routeName: (context) => WelcomeScreen(),
+        WelcomeScreen.routeName: (context) => const WelcomeScreen(),
+        SplashScreen.routeName: (context) => const SplashScreen(),
         // YogGuru.routeName: (context) => YogGuru(),
         // Camera.routeName: (context) => Camera(),
         // SpecificNeeds.routeName: (context) => SpecificNeeds(),
       },
-      home: Provider.of<UserProvider>(context).user.token.isNotEmpty
-          ? NavScreen()
-          : WelcomeScreen(),
+      home: const SplashScreen(),
     );
   }
 }

@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yogzen/global/color.dart';
+import 'package:yogzen/models/yoga.dart';
 import 'package:yogzen/providers/user_provider.dart';
+import 'package:yogzen/providers/yoga_provider.dart';
 import 'package:yogzen/screens/challenge/challenge_screen.dart';
 import 'package:yogzen/screens/home/components/mediatation_card.dart';
 import 'dart:math' as math;
 
 import 'package:yogzen/screens/home/components/yoga_card.dart';
+import 'package:yogzen/services/yoga_services.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -32,6 +35,8 @@ class _HomeScreenState extends State<HomeScreen> {
   // ];
 
   late PageController pageController;
+  YogaServices yogaServices = YogaServices();
+  YogaProvider yogaProvider = YogaProvider();
 
   @override
   void initState() {
@@ -157,7 +162,11 @@ class _HomeScreenState extends State<HomeScreen> {
                               const SizedBox(height: 6),
                               GestureDetector(
                                 onTap: () {
-                                  Navigator.push(context, MaterialPageRoute(builder: ((context) => ChallengeScreen())));
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: ((context) =>
+                                              ChallengeScreen())));
                                 },
                                 child: Container(
                                   padding: const EdgeInsets.symmetric(
@@ -200,7 +209,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Text("Yoga Library",
                   style: Theme.of(context).textTheme.headlineMedium),
             ),
-            const YogaCard(),
+            // FutureBuilder(future: yogaServices.getYogaData(context), builder: ())
           ],
         ),
       ),

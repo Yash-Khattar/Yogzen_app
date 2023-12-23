@@ -3,12 +3,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:yogzen/components/nav_bar_screen.dart';
 import 'package:yogzen/global/color.dart';
+import 'package:yogzen/models/yoga.dart';
 import 'package:yogzen/providers/user_provider.dart';
 import 'package:yogzen/providers/yoga_provider.dart';
 import 'package:yogzen/screens/auth/auth_screen.dart';
 import 'package:yogzen/screens/chatbot.dart/chatbot.dart';
 import 'package:yogzen/screens/splash/splash_screen.dart';
 import 'package:yogzen/screens/welcome/welcome_screen.dart';
+import 'package:yogzen/screens/yoga/yoga_screen.dart';
 
 void main() {
   runApp(
@@ -30,7 +32,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -63,6 +64,7 @@ class _MyAppState extends State<MyApp> {
         ChatScreen.routeName: (context) => ChatScreen(),
         WelcomeScreen.routeName: (context) => const WelcomeScreen(),
         SplashScreen.routeName: (context) => const SplashScreen(),
+        YogaScreen.routeName: (context) => const YogaScreen(),
         // YogGuru.routeName: (context) => YogGuru(),
         // Camera.routeName: (context) => Camera(),
         // SpecificNeeds.routeName: (context) => SpecificNeeds(),

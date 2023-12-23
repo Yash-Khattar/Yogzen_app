@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:yogzen/components/yoga_card.dart';
 import 'package:yogzen/global/color.dart';
 import 'package:yogzen/models/yoga.dart';
 import 'package:yogzen/providers/user_provider.dart';
@@ -7,8 +8,6 @@ import 'package:yogzen/providers/yoga_provider.dart';
 import 'package:yogzen/screens/challenge/challenge_screen.dart';
 import 'package:yogzen/screens/home/components/mediatation_card.dart';
 import 'dart:math' as math;
-
-import 'package:yogzen/screens/home/components/yoga_card.dart';
 import 'package:yogzen/services/yoga_services.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -19,25 +18,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  // List meditationCards = [
-  //   MeditationCard(
-  //     imageUrl: "assets/meditation/img1.jpeg",
-  //   ),
-  //   MeditationCard(
-  //     imageUrl: "assets/meditation/img2.jpg",
-  //   ),
-  //   MeditationCard(
-  //     imageUrl: "assets/meditation/img3.jpg",
-  //   ),
-  //   MeditationCard(
-  //     imageUrl: "assets/meditation/img4.jpg",
-  //   ),
-  // ];
-
   late PageController pageController;
-  YogaServices yogaServices = YogaServices();
-  YogaProvider yogaProvider = YogaProvider();
-
   @override
   void initState() {
     pageController = PageController(
@@ -52,6 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     final user = Provider.of<UserProvider>(context).user;
+    final yogaData = Provider.of<YogaProvider>(context).yogaData;
 
     return Scaffold(
       backgroundColor: klightBlue,
@@ -209,7 +191,23 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Text("Yoga Library",
                   style: Theme.of(context).textTheme.headlineMedium),
             ),
-            // FutureBuilder(future: yogaServices.getYogaData(context), builder: ())
+            SizedBox(
+              height: height * 0.26,
+              child: ListView.builder(
+                padding: EdgeInsets.all(8),
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding:
+                        EdgeInsets.fromLTRB((index == 0) ? 24 : 0, 0, 16, 0),
+                    child: YogaCard(
+                      yoga: yogaData[index],
+                    ),
+                  );
+                },
+                itemCount: yogaData.length,
+                scrollDirection: Axis.horizontal,
+              ),
+            ),
           ],
         ),
       ),

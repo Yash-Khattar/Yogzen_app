@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
+import 'dart:ffi';
 
 class Yoga {
   final String id;
@@ -21,25 +22,25 @@ class Yoga {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'id': id,
-      'name': name,
-      'imageUrl': imageUrl,
-      'stepsList': stepsList,
-      'stepDuration': stepDuration,
-      'healthTag': healthTag,
-      'totalDuration': totalDuration,
+      '_id': id,
+      'yoga_name': name,
+      'image_url': imageUrl,
+      'steps_list': stepsList,
+      'step_duration': stepDuration,
+      'health_tag': healthTag,
+      'total_duration': totalDuration,
     };
   }
 
   factory Yoga.fromMap(Map<String, dynamic> map) {
     return Yoga(
-      id: map['id'] as String,
-      name: map['name'] as String,
-      imageUrl: map['imageUrl'] as String,
-      stepsList: List<String>.from(map['stepsList'] as List<String>),
-      stepDuration: List.from(map['stepDuration'] as List),
-      healthTag: map['healthTag'] as String,
-      totalDuration: map['totalDuration'] as String,
+      id: map['_id'] as String,
+      name: map['yoga_name'] as String,
+      imageUrl: map['image_url'] as String,
+      stepsList: List.from(map['steps_list'] as List),
+      stepDuration: List.from(map['step_duration'] as List),
+      healthTag: map['health_tag'] as String,
+      totalDuration: map['total_duration'].toString() ,
     );
   }
 

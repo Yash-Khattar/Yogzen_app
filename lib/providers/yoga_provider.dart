@@ -5,7 +5,7 @@ class YogaProvider extends ChangeNotifier {
   List<Yoga> yogaData = [];
   List<Yoga> get getYogaData => yogaData;
   void setYogaData(List<Yoga> yogaData) {
-    yogaData = yogaData;
+    this.yogaData = yogaData;
     notifyListeners();
   }
 }

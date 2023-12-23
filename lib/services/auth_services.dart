@@ -109,9 +109,7 @@ class AuthServices {
             });
       }
     } catch (e) {
-      if (kDebugMode) {
-        print(e);
-      }
+      showSnackBar(context: context, text: e.toString());
     }
   }
 
@@ -134,23 +132,18 @@ class AuthServices {
           "token": token!,
         },
       );
-   
+
       httpErrorHandling(
           context: context,
           response: response,
           onSuccess: () {
-                print("1");
             Provider.of<UserProvider>(context, listen: false)
                 .setUser(response.body);
           });
       // var userProvider = Provider.of<UserProvider>(context, listen: false);
       // userProvider.setUser(response.body);
-    
-      print(response.body);
-      print(response.statusCode);
-     
     } catch (e) {
-      print(e.toString());
+      showSnackBar(context: context, text: e.toString());
     }
   }
 

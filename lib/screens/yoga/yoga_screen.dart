@@ -24,7 +24,7 @@ class _YogaScreenState extends State<YogaScreen> {
             child: Stack(
               children: [
                 Image.network(
-                  "https://lh3.googleusercontent.com/u/5/drive-viewer/AEYmBYTy-QHCrhszX8ElbekQY7xMSconPCiR6Qh4gsIlOXVvMAIh-s96tOwvmeP8-WNYWEBVbwCtyb4HE9mxfMQ8GENIDAfBZw=w1920-h877",
+                  yoga.imageUrl,
                   fit: BoxFit.cover,
                   width: double.infinity,
                   height: 250,

@@ -3,7 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:yogzen/components/nav_bar_screen.dart';
 import 'package:yogzen/global/color.dart';
-import 'package:yogzen/models/yoga.dart';
 import 'package:yogzen/providers/user_provider.dart';
 import 'package:yogzen/providers/yoga_provider.dart';
 import 'package:yogzen/screens/auth/auth_screen.dart';

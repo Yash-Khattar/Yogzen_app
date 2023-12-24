@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yogzen/screens/chatbot.dart/chatbot.dart';
-import 'package:yogzen/screens/specific_needs/yoga_card_sn.dart';
+import 'package:yogzen/screens/specific_needs/components/search_screen.dart';
+import 'package:yogzen/screens/specific_needs/components/yoga_card_sn.dart';
 
 import '../../global/color.dart';
 import '../../providers/user_provider.dart';
+import '../../providers/yoga_provider.dart';
+import '../chatbot.dart/components/bottome_page.dart';
 
 class SpecificNeedsScreen extends StatefulWidget {
   const SpecificNeedsScreen({super.key});
@@ -16,10 +19,10 @@ class SpecificNeedsScreen extends StatefulWidget {
 class _SpecificNeedsScreenState extends State<SpecificNeedsScreen> {
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<UserProvider>(context).user;
+    final yogaData = Provider.of<YogaProvider>(context, listen: false).yogaData;
     final height = MediaQuery.of(context).size.height;
-    print(height);
     final width = MediaQuery.of(context).size.width;
+    final _searchFocus = FocusNode();
     return SafeArea(
       child: Stack(
         children: [
@@ -45,6 +48,12 @@ class _SpecificNeedsScreenState extends State<SpecificNeedsScreen> {
                     Padding(
                       padding: const EdgeInsets.only(right: 16),
                       child: TextField(
+                        focusNode: _searchFocus,
+                        onTap: () {
+                          Navigator.of(context)
+                              .pushNamed(SearchScreen.routeName);
+                          _searchFocus.unfocus();
+                        },
                         maxLines: 1,
                         decoration: InputDecoration(
                             // label: Text("Search"),
@@ -70,7 +79,8 @@ class _SpecificNeedsScreenState extends State<SpecificNeedsScreen> {
                             hintStyle: TextStyle(
                                 color: kdarkBlueMuted,
                                 fontWeight: FontWeight.w500),
-                            prefixIcon: Icon(Icons.search, color: kdarkBlueMuted),
+                            prefixIcon:
+                                Icon(Icons.search, color: kdarkBlueMuted),
                             // border: OutlineInputBorder(
                             //   borderSide: BorderSide(
                             //     strokeAlign: BorderSide.strokeAlignOutside,
@@ -79,8 +89,8 @@ class _SpecificNeedsScreenState extends State<SpecificNeedsScreen> {
                             //   ),
                             //   borderRadius: BorderRadius.circular(8),
                             // ),
-                            contentPadding:
-                                EdgeInsets.symmetric(vertical: 4, horizontal: 4)),
+                            contentPadding: EdgeInsets.symmetric(
+                                vertical: 4, horizontal: 4)),
                       ),
                     ),
                     SizedBox(
@@ -101,9 +111,9 @@ class _SpecificNeedsScreenState extends State<SpecificNeedsScreen> {
                             childAspectRatio: 0.320,
                             crossAxisCount: 2),
                         itemBuilder: (context, index) {
-                          return YogaCardSN();
+                          return YogaCardSN(yoga: yogaData[index]);
                         },
-                        itemCount: 4,
+                        itemCount: 8,
                         shrinkWrap: true,
                         scrollDirection: Axis.horizontal,
                       ),
@@ -123,10 +133,10 @@ class _SpecificNeedsScreenState extends State<SpecificNeedsScreen> {
                         itemBuilder: (context, index) {
                           return Padding(
                             padding: const EdgeInsets.fromLTRB(0, 0, 16, 0),
-                            child: YogaCardSNBig(),
+                            child: YogaCardSNBig(yoga: yogaData[index]),
                           );
                         },
-                        itemCount: 4,
+                        itemCount: 10,
                         scrollDirection: Axis.horizontal,
                       ),
                     ),
@@ -148,7 +158,9 @@ class _SpecificNeedsScreenState extends State<SpecificNeedsScreen> {
                             childAspectRatio: 0.320,
                             crossAxisCount: 2),
                         itemBuilder: (context, index) {
-                          return YogaCardSN();
+                          return YogaCardSN(
+                            yoga: yogaData[index],
+                          );
                         },
                         itemCount: 4,
                         shrinkWrap: true,
@@ -163,24 +175,12 @@ class _SpecificNeedsScreenState extends State<SpecificNeedsScreen> {
           Positioned(
             bottom: 24,
             right: 24,
-            // child: IconButton.filledTonal(
-            //   style: ButtonStyle(
-            //     backgroundColor: MaterialStatePropertyAll(
-            //       kdarkBlue,
-            //     ),
-            //     // fixedSize: MaterialStatePropertyAll(Size(36, 36)),
-            //     elevation: MaterialStatePropertyAll(5),
-            //     iconColor: MaterialStatePropertyAll(Colors.white),
-            //     iconSize: MaterialStatePropertyAll(24),
-            //     // shadowColor: MaterialStatePropertyAll(Colors.black26),
-            //   ),
-            //   onPressed: () =>
-            //       Navigator.of(context).pushNamed(ChatScreen.routeName),
-            //   icon: Icon(Icons.message_rounded),
-            // ),
             child: InkWell(
-              onTap: () =>
-                  Navigator.of(context).pushNamed(ChatScreen.routeName),
+              onTap: () => Navigator.of(context).push(
+                BottomToTopPageRouteBuilder(
+                  page: ChatScreen(),
+                ),
+              ),
               child: CircleAvatar(
                 backgroundColor: kdarkBlue,
                 radius: 32,

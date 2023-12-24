@@ -35,7 +35,7 @@ class _NavBarState extends State<NavBar> {
             ],
           ),
           width: width,
-          padding: EdgeInsets.fromLTRB(0, 4, 0, 8),
+          padding: EdgeInsets.fromLTRB(16, 4, 16, 8),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [

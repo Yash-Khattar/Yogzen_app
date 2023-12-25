@@ -43,6 +43,7 @@ dependencies:
   collection: ^1.17.2
   file_picker: ^6.1.1
   simple_ripple_animation: ^0.0.8
+  flutter_tts: ^3.8.5
 
 dev_dependencies:
   flutter_test:

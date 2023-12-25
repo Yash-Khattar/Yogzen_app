@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:yogzen/global/color.dart';
 import 'package:yogzen/models/yoga.dart';
 
@@ -12,6 +13,26 @@ class YogaScreen extends StatefulWidget {
 }
 
 class _YogaScreenState extends State<YogaScreen> {
+  FlutterTts flutterTts = FlutterTts();
+  List<Color> stepTextColor = [];
+
+  Future<bool> startYoga(
+      List<String> stepsList, List<dynamic> stepDuration) async {
+    for (int i = 0; i < stepsList.length; i++) {
+      await flutterTts.speak(stepsList[i]);
+
+      await Future.delayed(Duration(seconds: stepDuration[i].toInt()));
+    }
+    return true;
+  }
+
+  @override
+  void dispose() {
+    flutterTts.pause();
+    flutterTts.stop();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     Yoga yoga = ModalRoute.of(context)!.settings.arguments as Yoga;
@@ -78,8 +99,10 @@ class _YogaScreenState extends State<YogaScreen> {
           ),
           Padding(
             padding: const EdgeInsets.all(16),
-            child: GestureDetector(
-              onTap: () {},
+            child: InkWell(
+              onTap: () {
+                startYoga(yoga.stepsList, yoga.stepDuration);
+              },
               child: Container(
                 height: 50,
                 decoration: BoxDecoration(

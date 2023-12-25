@@ -68,7 +68,7 @@ class _SplashScreenState extends State<SplashScreen> {
           ),
           Text(
             "Getting stuff ready for ya!",
-            style: Theme.of(context).textTheme.headlineLarge,
+            style: Theme.of(context).textTheme.headlineMedium,
           ),
         ],
       ),

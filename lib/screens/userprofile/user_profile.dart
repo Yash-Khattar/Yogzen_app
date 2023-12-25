@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yogzen/global/color.dart';
 import 'package:yogzen/providers/user_provider.dart';
-import 'package:yogzen/screens/welcome/welcome_screen.dart';
-import 'package:yogzen/services/auth_services.dart';
+import 'package:yogzen/screens/userprofile/userInfo.dart';
+import 'package:yogzen/screens/userprofile/userProfileButtons.dart';
 
 import '../chatbot.dart/chatbot.dart';
 import '../chatbot.dart/components/bottome_page.dart';
+
 
 class UserProfileScreen extends StatefulWidget {
   const UserProfileScreen({super.key});
@@ -19,28 +20,73 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<UserProvider>(context).user;
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return Stack(
-      children: [
-        Scaffold(
-          appBar: AppBar(
-            title: Text("User Profile"),
-            actions: [
-              IconButton(
-                onPressed: () {
-                  AuthServices().clearSharedPrefs();
-                  Navigator.pushNamedAndRemoveUntil(
-                      context, WelcomeScreen.routeName, (route) => false);
-                },
-                icon: Icon(Icons.logout),
+      children: [Scaffold(
+        appBar: AppBar(
+          backgroundColor: kdarkBlue,
+          title: Text("Profile"),
+        ),
+        backgroundColor: klightBlue,
+        body: Padding(
+          padding: EdgeInsets.fromLTRB(20, 15, 20, 0),
+          child: Column(
+            children: [
+              SizedBox(height: height * 0.015),
+              Center(
+                child: CircleAvatar(
+                  child: Icon(
+                    Icons.person,
+                    color: kdarkBlue,
+                    size: 180,
+                  ),
+                  //backgroundImage: AssetImage('assets/logo.png'),
+                  radius: height * 0.1,
+                ),
               ),
+              SizedBox(height: 10,),
+      
+              Container(
+                child: Text(
+                  '${user.name}',
+                  style: TextStyle(
+                    //fontWeight: FontWeight.bold,
+                    fontSize: 25,
+                  ),
+                ),
+              ),
+              SizedBox(height: 5,),
+      
+              Container(
+                child: Text(
+                  '${user.email}',
+                  style: TextStyle(
+                    fontSize: 15,
+                  ),
+                ),
+              ),
+              SizedBox(height: 5,),
+      
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+            UserInfoItem(label: 'Weight', value: '68 kg'),
+            UserInfoItem(label: 'Height', value: '175 cm'),
+            UserInfoItem(label: 'Age', value: '20 years'),
+            ],
+            ),
+            ),
+            
+            UserProfileButtons(title: '', onPressed: () {}),
+      
             ],
           ),
-          backgroundColor: klightBlue,
-          body: Center(
-            child: Text("User Profile of ${user.name}"),
-          ),
-        ),
-        Positioned(
+          )
+      ),
+      Positioned(
           bottom: 24,
           right: 24,
           child: InkWell(
@@ -60,7 +106,6 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
             ),
           ),
         ),
-      ],
-    );
+    ] );
   }
 }

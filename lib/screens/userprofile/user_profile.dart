@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yogzen/global/color.dart';
 import 'package:yogzen/providers/user_provider.dart';
-import 'package:yogzen/screens/userprofile/userInfo.dart';
 import 'package:yogzen/screens/userprofile/userProfileButtons.dart';
 
 import '../chatbot.dart/chatbot.dart';
@@ -36,12 +35,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
               SizedBox(height: height * 0.015),
               Center(
                 child: CircleAvatar(
-                  child: Icon(
-                    Icons.person,
-                    color: kdarkBlue,
-                    size: 180,
-                  ),
-                  //backgroundImage: AssetImage('assets/logo.png'),
+                  backgroundImage: AssetImage('assets/UserImage.jpeg'),
                   radius: height * 0.1,
                 ),
               ),
@@ -66,46 +60,14 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: 5,),
-      
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-            UserInfoItem(label: 'Weight', value: '68 kg'),
-            UserInfoItem(label: 'Height', value: '175 cm'),
-            UserInfoItem(label: 'Age', value: '20 years'),
-            ],
-            ),
-            ),
-            
+            //SizedBox(height: 10,),
+
             UserProfileButtons(title: '', onPressed: () {}),
       
             ],
           ),
           )
       ),
-      Positioned(
-          bottom: 24,
-          right: 24,
-          child: InkWell(
-            onTap: () => Navigator.of(context).push(
-              BottomToTopPageRouteBuilder(
-                page: ChatScreen(),
-              ),
-            ),
-            child: CircleAvatar(
-              backgroundColor: kdarkBlue,
-              radius: 32,
-              child: Icon(
-                Icons.messenger_rounded,
-                color: Colors.white,
-                size: 32,
-              ),
-            ),
-          ),
-        ),
     ] );
   }
 }

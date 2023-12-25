@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:yogzen/global/color.dart';
@@ -14,23 +16,54 @@ class YogaScreen extends StatefulWidget {
 
 class _YogaScreenState extends State<YogaScreen> {
   FlutterTts flutterTts = FlutterTts();
-  List<Color> stepTextColor = [];
+  bool isPlaying = false;
 
-  Future<bool> startYoga(
-      List<String> stepsList, List<dynamic> stepDuration) async {
+  int currentStepIndex = -1;
+
+  Future<void> startYoga(
+      List<String> stepsList, List<dynamic> stepDuration, String name) async {
+    setState(() {
+      isPlaying = true;
+    });
+    flutterTts.setVoice({"name": "en-in-x-ene-network", "locale": "en-IN"});
+    flutterTts.speak("Starting $name in 3  2  1");
+    await Future.delayed(const Duration(seconds: 3));
+
+    int count = 0;
     for (int i = 0; i < stepsList.length; i++) {
+      if (!isPlaying) break;
+      setState(() {
+        currentStepIndex = i;
+      });
       await flutterTts.speak(stepsList[i]);
-
       await Future.delayed(Duration(seconds: stepDuration[i].toInt()));
+      count++;
     }
-    return true;
+    if (count == stepsList.length - 1) {
+      await flutterTts.speak("Congratulations! You have completed $name");
+    }
+
+    setState(() {
+      isPlaying = false;
+    });
   }
 
   @override
-  void dispose() {
-    flutterTts.pause();
-    flutterTts.stop();
+  void dispose() async {
+    if (isPlaying) {
+      setState(() {
+        isPlaying = false;
+      });
+
+      await flutterTts.stop();
+    }
     super.dispose();
+  }
+
+  void stop() {
+    flutterTts.stop();
+    isPlaying = false;
+    setState(() {});
   }
 
   @override
@@ -40,7 +73,7 @@ class _YogaScreenState extends State<YogaScreen> {
       backgroundColor: klightBlue,
       body: Column(
         children: [
-          Container(
+          SizedBox(
             height: 250,
             child: Stack(
               children: [
@@ -90,9 +123,24 @@ class _YogaScreenState extends State<YogaScreen> {
               itemCount: yoga.stepsList.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                  leading: const Icon(Icons.play_circle_outline_rounded),
-                  title: Text(yoga.stepsList[index]),
-                  trailing: Text(yoga.stepDuration[index].toString() + "s"),
+                  leading: Icon(Icons.play_circle_outline_rounded,
+                      color: (index == currentStepIndex)
+                          ? kdarkBlue
+                          : Colors.black),
+                  title: Text(
+                    yoga.stepsList[index],
+                    style: TextStyle(
+                        color: (index == currentStepIndex)
+                            ? kdarkBlue
+                            : Colors.black),
+                  ),
+                  trailing: Text(
+                    "${yoga.stepDuration[index]}s",
+                    style: TextStyle(
+                        color: (index == currentStepIndex)
+                            ? kdarkBlue
+                            : Colors.black),
+                  ),
                 );
               },
             ),
@@ -100,9 +148,13 @@ class _YogaScreenState extends State<YogaScreen> {
           Padding(
             padding: const EdgeInsets.all(16),
             child: InkWell(
-              onTap: () {
-                startYoga(yoga.stepsList, yoga.stepDuration);
-              },
+              onTap: (isPlaying)
+                  ? () {
+                      stop();
+                    }
+                  : () {
+                      startYoga(yoga.stepsList, yoga.stepDuration, yoga.name);
+                    },
               child: Container(
                 height: 50,
                 decoration: BoxDecoration(
@@ -116,10 +168,10 @@ class _YogaScreenState extends State<YogaScreen> {
                     ),
                   ],
                 ),
-                child: const Center(
+                child: Center(
                   child: Text(
-                    'Start',
-                    style: TextStyle(color: Colors.white),
+                    (isPlaying) ? "Stop" : "Start",
+                    style: const TextStyle(color: Colors.white),
                   ),
                 ),
               ),

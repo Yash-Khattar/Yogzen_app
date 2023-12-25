@@ -66,10 +66,11 @@ class _SplashScreenState extends State<SplashScreen> {
           const SizedBox(
             height: 100,
           ),
-          Text(
-            "Getting stuff ready for ya!",
-            style: Theme.of(context).textTheme.headlineMedium,
-          ),
+          Text("Getting stuff ready for ya!",
+              style: TextStyle(
+                color: kblackHeading,
+                fontSize: 20,
+              )),
         ],
       ),
     );

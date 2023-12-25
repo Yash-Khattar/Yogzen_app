@@ -48,7 +48,7 @@ class _ChatScreenState extends State<ChatScreen> {
     return Scaffold(
       backgroundColor: klightBlue,
       appBar: AppBar(
-        title: Text('Aditya Nath Yogi'),
+        title: Text('Yog Guru'),
         backgroundColor: klightBlue,
         scrolledUnderElevation: 0,
       ),
@@ -58,7 +58,7 @@ class _ChatScreenState extends State<ChatScreen> {
           children: <Widget>[
             Expanded(
               child: ListView.builder(
-                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                 reverse: true,
                 itemCount: _chatBubbles.length,
                 itemBuilder: (_, int index) =>
@@ -67,8 +67,7 @@ class _ChatScreenState extends State<ChatScreen> {
             ),
             Container(
               margin: EdgeInsets.symmetric(horizontal: 8.0),
-              padding: const EdgeInsets.symmetric(
-                      horizontal: 8, vertical: 16),
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
               child: TextField(
                 controller: _controller,
                 onSubmitted: (_) => _handleSubmitted,

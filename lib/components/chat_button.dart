@@ -21,9 +21,9 @@ class ChatButton extends StatelessWidget {
         backgroundColor: kdarkBlue,
         radius: 32,
         child: Icon(
-          Icons.messenger_rounded,
+          Icons.chat,
           color: Colors.white,
-          size: 32,
+          size: 28,
         ),
       ),
     );

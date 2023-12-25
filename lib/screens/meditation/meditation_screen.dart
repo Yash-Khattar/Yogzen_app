@@ -1,8 +1,11 @@
+import 'dart:ui';
+
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 
 class MeditationScreen extends StatefulWidget {
-  const MeditationScreen({ super.key });
+  const MeditationScreen({super.key});
+  static String routeName = '/meditation';
 
   @override
   State<MeditationScreen> createState() => _MeditationScreenState();
@@ -11,6 +14,8 @@ class MeditationScreen extends StatefulWidget {
 class _MeditationScreenState extends State<MeditationScreen> {
   final player = AudioPlayer();
   bool isPlaying = false;
+  Duration position = Duration.zero;
+  Duration duration = Duration.zero;
 
   @override
   void initState() {
@@ -21,71 +26,135 @@ class _MeditationScreenState extends State<MeditationScreen> {
         isPlaying = state == PlayerState.playing;
       });
     });
+
+    player.onDurationChanged.listen((duration) {
+      setState(() {
+        this.duration = duration;
+      });
+    });
+    player.onPositionChanged.listen((position) {
+      setState(() {
+        this.position = position;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    player.dispose();
+    super.dispose();
+  }
+
+  String formatTime(int seconds) {
+    Duration duration = Duration(seconds: seconds);
+    String minutes = (duration.inMinutes % 60).toString().padLeft(2, '0');
+    String second = (duration.inSeconds % 60).toString().padLeft(2, '0');
+    return '$minutes:$second';
   }
 
   @override
   Widget build(BuildContext context) {
+    final Map arguments = ModalRoute.of(context)!.settings.arguments as Map;
     return Scaffold(
-      body: Stack(
-        children: [
-          Image.asset(
-            'assets/mountain.jpeg',
+      body: Container(
+        height: double.infinity,
+        width: double.infinity,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(arguments['image']),
             fit: BoxFit.cover,
-            width: double.infinity,
-            height: double.infinity,
           ),
-          Container(
-            color: Colors.black.withOpacity(0.5),
-            width: double.infinity,
-            height: double.infinity,
-          ),
-          Positioned(
-            left: 30,
-            right: 30,
-            bottom: 50,
-            child: Container(
-                padding: EdgeInsets.all(50),
-                decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.7),
-                  borderRadius: BorderRadius.circular(20)
-                ),
-                child: Column(
-                  children: [
-                    Text('Birds Chirping in mountains...',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 18,
-                    ),),
-                    SizedBox(height: 30,),
-                    ElevatedButton(
-                      onPressed: () async {
-                        await player.play(AssetSource('audio/bird_chirping.mp3'));
-                      },
-                      child: Text('Play Song'),
-                      ),
-                      SizedBox(height: 30,),
-                    CircleAvatar(
-                      radius: 35,
-                      child: IconButton(
-                        onPressed: () async {
-                          if(isPlaying) {
-                            await player.pause();
-                          } else {
-                            await player.play(AssetSource('audio/bird_chirping.mp3'));
-                          }
-                        },
-                        icon: Icon(
-                          isPlaying ? Icons.pause : Icons.play_arrow,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Spacer(flex: 2),
+              Text(
+                arguments['name'],
+                style: TextStyle(
+                    fontSize: 32,
+                    color: arguments['color'],
+                    fontWeight: FontWeight.w600),
+              ),
+              SizedBox(
+                height: 8,
+              ),
+              Text(arguments['description'],
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: arguments['color'],
+                  )),
+              Spacer(flex: 8),
+              Row(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(100),
+                    child: BackdropFilter(
+                      filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
+                      child: Container(
+                        height: 70,
+                        width: 70,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          border: Border.all(
+                            color: Colors.white.withOpacity(0.1),
+                          ),
+                          gradient: LinearGradient(
+                            colors: [
+                              Colors.white.withOpacity(0.4),
+                              Colors.white.withOpacity(0.1),
+                            ],
+                          ),
+                        ),
+                        child: IconButton(
+                          onPressed: () async {
+                            if (isPlaying) {
+                              await player.pause();
+                            } else {
+                              await player
+                                  .play(AssetSource(arguments['audio']));
+                            }
+                          },
+                          icon: Icon(
+                            isPlaying ? Icons.pause : Icons.play_arrow,
                           ),
                           iconSize: 40,
+                          color: Colors.white,
                         ),
-                    )
-                  ],
-                )
-            ),
-          )
-        ] 
-      )
-    );   
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 8,
+                  ),
+                  Column(
+                    children: [
+                      Text(
+                        '${formatTime(position.inSeconds)} / ${arguments['duration']} mins',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                        ),
+                      ),
+                      Slider(
+                          min: 0,
+                          max: duration.inSeconds.toDouble(),
+                          value: position.inSeconds.toDouble(),
+                          onChanged: (value) {
+                            player.seek(Duration(seconds: value.toInt()));
+                            player.resume();
+                          })
+                    ],
+                  ),
+                ],
+              ),
+              Spacer(flex: 1),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

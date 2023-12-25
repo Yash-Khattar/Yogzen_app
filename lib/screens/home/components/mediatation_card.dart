@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yogzen/screens/meditation/data.dart';
 import 'dart:math' as math;
 
 import 'package:yogzen/screens/meditation/meditation_screen.dart';
@@ -35,12 +36,12 @@ class _MeditationState extends State<Meditation> {
         itemBuilder: (context, index) {
           // double offset = pageOffset - index;
 
-          return 
-            GestureDetector(
-              onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => MeditationScreen()));
-              },
-              child: AnimatedBuilder(
+          return GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, MeditationScreen.routeName,
+                  arguments: meditationData[index]);
+            },
+            child: AnimatedBuilder(
               animation: pageController,
               builder: (context, child) {
                 double pageOffset = 0;
@@ -70,7 +71,7 @@ class _MeditationState extends State<Meditation> {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(12),
                           child: Image.asset(
-                            'assets/meditation/img${index + 1}.jpeg',
+                            meditationData[index]['image'],
                             height: height * 0.2,
                             width: width,
                             alignment: Alignment(-pageOffset.abs(), 0),
@@ -82,7 +83,7 @@ class _MeditationState extends State<Meditation> {
                         bottom: height * 0.052,
                         left: 30,
                         child: Text(
-                          "Meditation ${index + 1}",
+                          meditationData[index]['name'],
                           style: const TextStyle(color: Colors.white),
                         ),
                       ),
@@ -90,8 +91,8 @@ class _MeditationState extends State<Meditation> {
                   ),
                 );
               },
-                      ),
-            );
+            ),
+          );
         },
       ),
     );

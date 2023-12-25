@@ -8,6 +8,7 @@ import 'package:yogzen/providers/yoga_provider.dart';
 import 'package:yogzen/screens/auth/auth_screen.dart';
 import 'package:yogzen/screens/chatbot.dart/chatbot.dart';
 import 'package:yogzen/screens/chatbot.dart/components/bottome_page.dart';
+import 'package:yogzen/screens/meditation/meditation_screen.dart';
 import 'package:yogzen/screens/specific_needs/components/search_screen.dart';
 import 'package:yogzen/screens/splash/splash_screen.dart';
 import 'package:yogzen/screens/welcome/welcome_screen.dart';
@@ -67,6 +68,7 @@ class _MyAppState extends State<MyApp> {
         SplashScreen.routeName: (context) => const SplashScreen(),
         YogaScreen.routeName: (context) => const YogaScreen(),
         SearchScreen.routeName: (context) => const SearchScreen(),
+         MeditationScreen.routeName: (context) => const MeditationScreen(),
         // YogGuru.routeName: (context) => YogGuru(),
         // Camera.routeName: (context) => Camera(),
         // SpecificNeeds.routeName: (context) => SpecificNeeds(),

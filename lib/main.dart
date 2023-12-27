@@ -68,10 +68,7 @@ class _MyAppState extends State<MyApp> {
         SplashScreen.routeName: (context) => const SplashScreen(),
         YogaScreen.routeName: (context) => const YogaScreen(),
         SearchScreen.routeName: (context) => const SearchScreen(),
-         MeditationScreen.routeName: (context) => const MeditationScreen(),
-        // YogGuru.routeName: (context) => YogGuru(),
-        // Camera.routeName: (context) => Camera(),
-        // SpecificNeeds.routeName: (context) => SpecificNeeds(),
+        MeditationScreen.routeName: (context) => const MeditationScreen(),
       },
       home: const SplashScreen(),
     );

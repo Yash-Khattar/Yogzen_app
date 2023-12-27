@@ -16,86 +16,149 @@ class YogaCard extends StatelessWidget {
       onTap: () {
         Navigator.pushNamed(context, YogaScreen.routeName, arguments: yoga);
       },
-      child: Container(
-        height: height * 0.2,
-        width: width * 3.5 / 5,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(
-            color: kdarkBlueMuted,
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.1),
-              offset: const Offset(8, 20),
-              blurRadius: 24,
-            ),
-          ],
-        ),
-        padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-        child: Column(
-          children: [
-            Expanded(
-              child: Image.network(
-                yoga.imageUrl,
-                fit: BoxFit.scaleDown,
+      child: Stack(
+        children: [
+          Expanded(
+            child: Container(
+              clipBehavior: Clip.none,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16),
+                boxShadow: const [
+                  BoxShadow(
+                    blurRadius: 4,
+                    spreadRadius: 0,
+                    offset: Offset(2, 2),
+                    color: Colors.black26,
+                  ),
+                ],
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(16),
+                child: Image.network(
+                  yoga.imageUrl,
+
+                  // fit: BoxFit.cover,
+                ),
               ),
             ),
-            SizedBox(
-              height: 8,
-            ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                FittedBox(
-                  fit: BoxFit.scaleDown,
-                  child: Icon(
-                    Icons.play_circle_outline_rounded,
-                    size: 36,
-                    color: kdarkBlueMuted,
+          ),
+          Positioned(
+            bottom: 0,
+            child: Container(
+              padding: EdgeInsets.only(left: 16, right: 8, top: 16, bottom: 8),
+              width: width,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                gradient: LinearGradient(
+                  colors: [
+                    Colors.white.withOpacity(0),
+                    Colors.white.withOpacity(0.8),
+                  ],
+                  stops: [0, 0.3],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                ),
+                // borderRadius: BorderRadius.only(
+                //   bottomLeft: Radius.circular(16),
+                //   bottomRight: Radius.circular(16),
+                // ),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    yoga.name,
+                    style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16,
+                        color: kblackHeading),
                   ),
-                ),
-                SizedBox(
-                  width: 8,
-                ),
-                FittedBox(
-                  fit: BoxFit.scaleDown,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text(
-                        yoga.name,
-                        style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 16,
-                            color: kblackHeading),
+                      const Icon(Icons.access_time_rounded,
+                          size: 14, color: Colors.black45),
+                      const SizedBox(
+                        width: 4,
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Icon(Icons.access_time_rounded,
-                              size: 14, color: Colors.black45),
-                          SizedBox(
-                            width: 4,
-                          ),
-                          Text(
-                            "5 Minutes",
-                            style: TextStyle(
-                              color: kblackSubHeading,
-                              fontSize: 14,
-                            ),
-                          ),
-                        ],
-                      )
+                      Text(
+                        "5 Minutes",
+                        style: TextStyle(
+                          color: kblackSubHeading,
+                          fontSize: 14,
+                        ),
+                      ),
                     ],
-                  ),
-                )
-              ],
+                  )
+                ],
+              ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
 }
+
+
+  //  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+        // child: Column(
+        //   children: [
+        //     Expanded(
+        //       child: Image.network(
+        //         yoga.imageUrl,
+        //       ),
+        //     ),
+        //     const SizedBox(
+        //       height: 8,
+        //     ),
+        //     Row(
+        //       crossAxisAlignment: CrossAxisAlignment.center,
+        //       children: [
+        //         FittedBox(
+        //           fit: BoxFit.scaleDown,
+        //           child: Icon(
+        //             Icons.play_circle_outline_rounded,
+        //             size: 36,
+        //             color: kdarkBlueMuted,
+        //           ),
+        //         ),
+        //         const SizedBox(
+        //           width: 8,
+        //         ),
+        //         FittedBox(
+        //           fit: BoxFit.scaleDown,
+        //           child: Column(
+        //             crossAxisAlignment: CrossAxisAlignment.start,
+        //             children: [
+        //               Text(
+        //                 yoga.name,
+        //                 style: TextStyle(
+        //                     fontWeight: FontWeight.w600,
+        //                     fontSize: 16,
+        //                     color: kblackHeading),
+        //               ),
+        //               Row(
+        //                 mainAxisAlignment: MainAxisAlignment.start,
+        //                 children: [
+        //                   const Icon(Icons.access_time_rounded,
+        //                       size: 14, color: Colors.black45),
+        //                   const SizedBox(
+        //                     width: 4,
+        //                   ),
+        //                   Text(
+        //                     "5 Minutes",
+        //                     style: TextStyle(
+        //                       color: kblackSubHeading,
+        //                       fontSize: 14,
+        //                     ),
+        //                   ),
+        //                 ],
+        //               )
+        //             ],
+        //           ),
+        //         )
+        //       ],
+        //     ),
+        //   ],
+        // ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yogzen/components/yoga_card.dart';
 import 'package:yogzen/global/color.dart';
+import 'package:yogzen/models/yoga.dart';
 import 'package:yogzen/providers/user_provider.dart';
 import 'package:yogzen/providers/yoga_provider.dart';
 import 'package:yogzen/screens/challenge/challenge_screen.dart';
@@ -33,6 +34,9 @@ class _HomeScreenState extends State<HomeScreen> {
     double width = MediaQuery.of(context).size.width;
     final user = Provider.of<UserProvider>(context).user;
     final yogaData = Provider.of<YogaProvider>(context).yogaData;
+    final List<Yoga> yogaRow1 = yogaData.sublist(0, yogaData.length ~/ 2);
+    final List<Yoga> yogaRow2 =
+        yogaData.sublist(yogaData.length ~/ 2, yogaData.length);
 
     return Scaffold(
       floatingActionButton: const ChatButton(),
@@ -44,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Container(
               height: height * 0.3,
               width: width,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 // image: DecorationImage(
                 //   opacity: 0.3,
                 //   image: Image.asset(
@@ -79,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           children: [
                             Text(
                               'Good Morning, ${user.name}',
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 18,
                                 fontWeight: FontWeight.w600,
@@ -110,7 +114,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           width: width * 0.8,
                           decoration: BoxDecoration(
                             color: kdarkBlueMuted,
-                            borderRadius: BorderRadius.only(
+                            borderRadius: const BorderRadius.only(
                               topRight: Radius.circular(100),
                               bottomRight: Radius.circular(100),
                             ),
@@ -148,7 +152,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       context,
                                       MaterialPageRoute(
                                           builder: ((context) =>
-                                              ChallengeScreen())));
+                                              const ChallengeScreen())));
                                 },
                                 child: Container(
                                   padding: const EdgeInsets.symmetric(
@@ -194,17 +198,35 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(
               height: height * 0.26,
               child: ListView.builder(
-                padding: EdgeInsets.all(8),
+                padding: const EdgeInsets.all(8),
                 itemBuilder: (context, index) {
                   return Padding(
                     padding:
-                        EdgeInsets.fromLTRB((index == 0) ? 24 : 0, 0, 16, 0),
+                        EdgeInsets.fromLTRB((index == 0) ? 24 : 0, 8, 16, 8),
                     child: YogaCard(
-                      yoga: yogaData[index],
+                      yoga: yogaRow1[index],
                     ),
                   );
                 },
-                itemCount: yogaData.length,
+                itemCount: yogaRow1.length,
+                scrollDirection: Axis.horizontal,
+              ),
+            ),
+            const SizedBox(height: 12),
+            SizedBox(
+              height: height * 0.26,
+              child: ListView.builder(
+                padding: const EdgeInsets.all(8),
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding:
+                        EdgeInsets.fromLTRB((index == 0) ? 24 : 0, 8, 16, 8),
+                    child: YogaCard(
+                      yoga: yogaRow2[index],
+                    ),
+                  );
+                },
+                itemCount: yogaRow2.length,
                 scrollDirection: Axis.horizontal,
               ),
             ),

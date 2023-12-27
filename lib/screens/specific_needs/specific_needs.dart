@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yogzen/components/chat_button.dart';
+import 'package:yogzen/components/yoga_card.dart';
 import 'package:yogzen/screens/specific_needs/components/search_screen.dart';
 import 'package:yogzen/screens/specific_needs/components/yoga_card_sn.dart';
 
@@ -127,7 +128,7 @@ class _SpecificNeedsScreenState extends State<SpecificNeedsScreen> {
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: const EdgeInsets.fromLTRB(0, 0, 16, 0),
-                        child: YogaCardSNBig(yoga: yogaData[index]),
+                        child: YogaCard(yoga: yogaData[index]),
                       );
                     },
                     itemCount: 10,

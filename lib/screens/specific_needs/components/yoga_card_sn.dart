@@ -70,7 +70,7 @@ class YogaCardSN extends StatelessWidget {
                           width: 4,
                         ),
                         Text(
-                          yoga.totalDuration + " Minutes",
+                          "5 Minutes",
                           style: TextStyle(
                             color: kblackSubHeading,
                             fontSize: 14,

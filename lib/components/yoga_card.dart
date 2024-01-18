@@ -97,4 +97,3 @@ class YogaCard extends StatelessWidget {
       ),
     );
   }
-}

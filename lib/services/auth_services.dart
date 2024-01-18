@@ -34,7 +34,7 @@ class AuthServices {
   }
 
 //signup
-  void postSignUp(
+  Future<bool> postSignUp(
       {required BuildContext context,
       required String name,
       required String email,
@@ -47,21 +47,21 @@ class AuthServices {
       userType: "USER",
       token: "",
     );
-    print(user);
+
     var url = Uri.parse('$baseUrl/users/signup');
     try {
       if (email == "") {
         showSnackBar(context: context, text: "Email cannot be empty");
-        return;
+        return false;
       }
 
       if (password == "") {
         showSnackBar(context: context, text: "Password cannot be empty");
-        return;
+        return false;
       }
       if (name == "") {
         showSnackBar(context: context, text: "Name cannot be empty");
-        return;
+        return false;
       }
 
       var response = await http.post(url,
@@ -77,11 +77,14 @@ class AuthServices {
             onSuccess: () {
               postLogin(email: email, password: password, context: context);
             });
+        return false;
       }
+      return true;
     } catch (e) {
       if (context.mounted) {
         showSnackBar(context: context, text: e.toString());
       }
+      return false;
     }
   }
 
@@ -130,6 +133,7 @@ class AuthServices {
                     context, NavScreen.routeName, (route) => false);
               }
             });
+        return false;
       }
       return true;
     } catch (e) {

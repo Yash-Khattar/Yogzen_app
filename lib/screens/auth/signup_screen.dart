@@ -50,16 +50,20 @@ class _SignupState extends State<Signup> {
           const Spacer(flex: 2),
           GestureDetector(
             onTap: () {
-              AuthServices().postSignUp(
-                  context: context,
-                  name: widget.nameController.text,
-                  email: widget.emailController.text,
-                  password: widget.passwordController.text);
               setState(() {
                 isSignupTapped = true;
               });
-              // AuthServices().getYogzen();
-              // Navigator.pushNamed(context, '/tabScreen');
+              AuthServices()
+                  .postSignUp(
+                      context: context,
+                      name: widget.nameController.text,
+                      email: widget.emailController.text,
+                      password: widget.passwordController.text)
+                  .then((value) {
+                setState(() {
+                  isSignupTapped = value;
+                });
+              });
             },
             child: Container(
               width: double.infinity,
@@ -70,7 +74,9 @@ class _SignupState extends State<Signup> {
               ),
               child: Center(
                 child: isSignupTapped
-                    ? CircularProgressIndicator()
+                    ? CircularProgressIndicator(
+                        color: Colors.white,
+                      )
                     : Text(
                         "Sign Up",
                         style: TextStyle(color: Colors.white),

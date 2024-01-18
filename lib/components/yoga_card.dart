@@ -44,7 +44,8 @@ class YogaCard extends StatelessWidget {
           Positioned(
             bottom: 0,
             child: Container(
-              padding: const EdgeInsets.only(left: 16, right: 8, top: 16, bottom: 8),
+              padding:
+                  const EdgeInsets.only(left: 16, right: 8, top: 16, bottom: 8),
               width: width,
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -97,3 +98,4 @@ class YogaCard extends StatelessWidget {
       ),
     );
   }
+}

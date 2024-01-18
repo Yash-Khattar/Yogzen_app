@@ -76,7 +76,6 @@ class _AuthScreenState extends State<AuthScreen> with TickerProviderStateMixin {
       backgroundColor: klightBlue,
       body: SingleChildScrollView(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const SizedBox(
               height: 20,
@@ -166,7 +165,7 @@ class _AuthScreenState extends State<AuthScreen> with TickerProviderStateMixin {
               ),
             ),
             SizedBox(
-              height: MediaQuery.sizeOf(context).height * 0.44,
+              height: MediaQuery.sizeOf(context).height * 0.5,
               child: TabBarView(
                 controller: _tabController,
                 children: [
@@ -179,32 +178,7 @@ class _AuthScreenState extends State<AuthScreen> with TickerProviderStateMixin {
                       passwordController: passwordController),
                 ],
               ),
-            )
-
-            // Padding(
-            //   padding: const EdgeInsets.symmetric(horizontal: 24),
-            //   child: GestureDetector(
-            //     onTap: () {},
-            //     child: Container(
-            //       width: double.infinity,
-            //       height: 50,
-            //       decoration: BoxDecoration(
-            //         border: Border.all(color: Colors.black),
-            //         borderRadius: BorderRadius.circular(16),
-            //         color: Colors.white,
-            //       ),
-            //       child: const Center(
-            //         child: Text(
-            //           "Log In with Google",
-            //           style: TextStyle(),
-            //         ),
-            //       ),
-            //     ),
-            //   ),
-            // ),
-            // const SizedBox(
-            //   height: 40,
-            // ),
+            ),
           ],
         ),
       ),

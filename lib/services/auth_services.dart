@@ -50,6 +50,20 @@ class AuthServices {
     print(user);
     var url = Uri.parse('$baseUrl/users/signup');
     try {
+      if (email == "") {
+        showSnackBar(context: context, text: "Email cannot be empty");
+        return;
+      }
+
+      if (password == "") {
+        showSnackBar(context: context, text: "Password cannot be empty");
+        return;
+      }
+      if (name == "") {
+        showSnackBar(context: context, text: "Name cannot be empty");
+        return;
+      }
+
       var response = await http.post(url,
           body: user.toJson(),
           headers: <String, String>{
@@ -76,7 +90,17 @@ class AuthServices {
       required password,
       required BuildContext context}) async {
     var url = Uri.parse('$baseUrl/users/login');
+
     try {
+      if (email == null || email == "") {
+        showSnackBar(context: context, text: "Email cannot be empty");
+        return;
+      }
+
+      if (password == null || password == "") {
+        showSnackBar(context: context, text: "Password cannot be empty");
+        return;
+      }
       var response = await http.post(url,
           body: jsonEncode({
             "email": email,

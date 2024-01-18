@@ -31,14 +31,7 @@ class Login extends StatelessWidget {
             hinttext: "Password",
             keyboardType: TextInputType.visiblePassword,
           ),
-          Align(
-              alignment: Alignment.topRight,
-              child: TextButton(
-                onPressed: () {},
-                child: Text("Forgot Password?"),
-                style: TextButton.styleFrom(foregroundColor: Colors.black),
-              )),
-          const Spacer(flex: 2),
+          const Spacer(),
           GestureDetector(
             onTap: () {
               AuthServices().postLogin(

@@ -3,8 +3,8 @@ import 'package:yogzen/components/textfield.dart';
 import 'package:yogzen/global/color.dart';
 import 'package:yogzen/services/auth_services.dart';
 
-class Signup extends StatelessWidget {
-  const Signup(
+class Signup extends StatefulWidget {
+  Signup(
       {super.key,
       required this.emailController,
       required this.passwordController,
@@ -15,13 +15,19 @@ class Signup extends StatelessWidget {
   final TextEditingController nameController;
 
   @override
+  State<Signup> createState() => _SignupState();
+}
+
+class _SignupState extends State<Signup> {
+  bool isSignupTapped = false;
+  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 40, left: 24, right: 24),
       child: Column(
         children: [
           PimaryTextfield(
-            controller: nameController,
+            controller: widget.nameController,
             hinttext: "Name",
             keyboardType: TextInputType.name,
           ),
@@ -29,7 +35,7 @@ class Signup extends StatelessWidget {
             height: 16,
           ),
           PimaryTextfield(
-            controller: emailController,
+            controller: widget.emailController,
             hinttext: "Email",
             keyboardType: TextInputType.emailAddress,
           ),
@@ -37,7 +43,7 @@ class Signup extends StatelessWidget {
             height: 16,
           ),
           PimaryTextfield(
-            controller: passwordController,
+            controller: widget.passwordController,
             hinttext: "Password",
             keyboardType: TextInputType.visiblePassword,
           ),
@@ -46,9 +52,12 @@ class Signup extends StatelessWidget {
             onTap: () {
               AuthServices().postSignUp(
                   context: context,
-                  name: nameController.text,
-                  email: emailController.text,
-                  password: passwordController.text);
+                  name: widget.nameController.text,
+                  email: widget.emailController.text,
+                  password: widget.passwordController.text);
+              setState(() {
+                isSignupTapped = true;
+              });
               // AuthServices().getYogzen();
               // Navigator.pushNamed(context, '/tabScreen');
             },
@@ -59,11 +68,13 @@ class Signup extends StatelessWidget {
                 borderRadius: BorderRadius.circular(16),
                 color: kdarkBlue,
               ),
-              child: const Center(
-                child: Text(
-                  "Sign Up",
-                  style: TextStyle(color: Colors.white),
-                ),
+              child: Center(
+                child: isSignupTapped
+                    ? CircularProgressIndicator()
+                    : Text(
+                        "Sign Up",
+                        style: TextStyle(color: Colors.white),
+                      ),
               ),
             ),
           ),

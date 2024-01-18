@@ -85,7 +85,7 @@ class AuthServices {
     }
   }
 
-  void postLogin(
+  Future<bool> postLogin(
       {required email,
       required password,
       required BuildContext context}) async {
@@ -94,12 +94,12 @@ class AuthServices {
     try {
       if (email == null || email == "") {
         showSnackBar(context: context, text: "Email cannot be empty");
-        return;
+        return false;
       }
 
       if (password == null || password == "") {
         showSnackBar(context: context, text: "Password cannot be empty");
-        return;
+        return false;
       }
       var response = await http.post(url,
           body: jsonEncode({
@@ -131,8 +131,10 @@ class AuthServices {
               }
             });
       }
+      return true;
     } catch (e) {
       showSnackBar(context: context, text: e.toString());
+      return false;
     }
   }
 

@@ -3,8 +3,8 @@ import 'package:yogzen/components/textfield.dart';
 import 'package:yogzen/global/color.dart';
 import 'package:yogzen/services/auth_services.dart';
 
-class Login extends StatelessWidget {
-  const Login(
+class Login extends StatefulWidget {
+  Login(
       {super.key,
       required this.emailController,
       required this.passwordController});
@@ -13,13 +13,20 @@ class Login extends StatelessWidget {
   final TextEditingController passwordController;
 
   @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  bool isLoginTapped = false;
+
+  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 40, left: 24, right: 24),
       child: Column(
         children: [
           PimaryTextfield(
-            controller: emailController,
+            controller: widget.emailController,
             hinttext: "Email",
             keyboardType: TextInputType.emailAddress,
           ),
@@ -27,17 +34,26 @@ class Login extends StatelessWidget {
             height: 16,
           ),
           PimaryTextfield(
-            controller: passwordController,
+            controller: widget.passwordController,
             hinttext: "Password",
             keyboardType: TextInputType.visiblePassword,
           ),
           const Spacer(),
           GestureDetector(
             onTap: () {
-              AuthServices().postLogin(
-                  context: context,
-                  email: emailController.text,
-                  password: passwordController.text);
+              setState(() {
+                isLoginTapped = true;
+              });
+              AuthServices()
+                  .postLogin(
+                      context: context,
+                      email: widget.emailController.text,
+                      password: widget.passwordController.text)
+                  .then((value) {
+                setState(() {
+                  isLoginTapped = value;
+                });
+              });
             },
             child: Container(
               width: double.infinity,
@@ -46,11 +62,13 @@ class Login extends StatelessWidget {
                 borderRadius: BorderRadius.circular(16),
                 color: kdarkBlue,
               ),
-              child: const Center(
-                child: Text(
-                  "Log In",
-                  style: TextStyle(color: Colors.white),
-                ),
+              child: Center(
+                child: isLoginTapped
+                    ? CircularProgressIndicator()
+                    : Text(
+                        "Log In",
+                        style: TextStyle(color: Colors.white),
+                      ),
               ),
             ),
           ),

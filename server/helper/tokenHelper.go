@@ -42,10 +42,7 @@ func GenerateAllToken(email string, name string, userType string, uid string) (s
 		},
 	}
 	token, err := jwt.NewWithClaims(jwt.SigningMethodHS256, claims).SignedString([]byte(SECRET_KEY))
-	if err != nil {
-		log.Panic(err)
-		return
-	}
+
 	refreshToken, err := jwt.NewWithClaims(jwt.SigningMethodHS256, refreshClaims).SignedString([]byte(SECRET_KEY))
 	if err != nil {
 		log.Panic(err)

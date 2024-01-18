@@ -27,6 +27,7 @@ func HashPassword(password string) string {
 	if err != nil {
 		log.Panic(err)
 	}
+
 	return string(hashedPassword)
 }
 
@@ -46,25 +47,24 @@ func VerifyPassword(userPassword string, providedPassword string) (bool, string)
 // signup
 func Signup() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		fmt.Println("1")
 		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
 		defer cancel()
 		var user model.User
-		fmt.Println("2")
+
 		//binding user data from request to user struct
 		if err := c.BindJSON(&user); err != nil {
 
 			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 			return
 		}
-		fmt.Println("3")
+
 		//apply validation on user data
 		validationErr := validate.Struct(user)
 		if validationErr != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"error": validationErr.Error()})
 			return
 		}
-		fmt.Println("4")
+
 		//check if user already exists
 		count, err := userCollection.CountDocuments(ctx, bson.M{"email": user.Email})
 		// defer cancel()
@@ -73,27 +73,26 @@ func Signup() gin.HandlerFunc {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "error while checking email"})
 			return
 		}
-		fmt.Println("5")
+
 		password := HashPassword(*user.Password)
 		user.Password = &password
 		if count > 0 {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "user alraedy exists"})
 			return
 		}
-		fmt.Println("6")
+
 		//creating tokens and ids
 		user.CreatedAt, _ = time.Parse(time.RFC3339, time.Now().Format(time.RFC3339))
 		user.UpdatedAt, _ = time.Parse(time.RFC3339, time.Now().Format(time.RFC3339))
 		user.ID = primitive.NewObjectID()
 		user.UserId = user.ID.Hex()
-		fmt.Println("7")
+
 		token, refreshToken, err := helper.GenerateAllToken(*user.Email, *user.Name, *user.UserType, user.UserId)
 		if err != nil {
 			log.Panic(err)
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "token error"})
 			return
 		}
-		fmt.Println("8")
 		user.Token = &token
 		user.RefreshToken = &refreshToken
 
@@ -104,15 +103,12 @@ func Signup() gin.HandlerFunc {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": msg})
 			return
 		}
-		fmt.Println("9")
 		c.JSON(http.StatusOK, resultInsertedNumber)
-		fmt.Println("10")
 	}
 }
 
 func Login() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		fmt.Println("1")
 		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
 		defer cancel()
 		var user model.User
@@ -121,32 +117,27 @@ func Login() gin.HandlerFunc {
 			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 			return
 		}
-		fmt.Println("2")
 		// finding if user exists
 		err := userCollection.FindOne(ctx, bson.M{"email": user.Email}).Decode(&foundUser)
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "email or password is incorrect"})
 			return
 		}
-		fmt.Println("3")
 		passwordIsValid, msg := VerifyPassword(*user.Password, *foundUser.Password)
 		if !passwordIsValid {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": msg})
 			return
 		}
-		fmt.Println("4")
 		if foundUser.Email == nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "user not found"})
 			return
 		}
-		fmt.Println("5")
 		token, refreshToken, err := helper.GenerateAllToken(*foundUser.Email, *foundUser.Name, *foundUser.UserType, foundUser.UserId)
 		if err != nil {
 			log.Panic(err)
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "token error"})
 			return
 		}
-		fmt.Println("6")
 		helper.UpdateAllToken(token, refreshToken, foundUser.UserId)
 		err = userCollection.FindOne(ctx, bson.M{"userid": foundUser.UserId}).Decode(&foundUser)
 
@@ -154,9 +145,7 @@ func Login() gin.HandlerFunc {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 			return
 		}
-		fmt.Println("7")
 		c.JSON(http.StatusOK, foundUser)
-		fmt.Println("8")
 	}
 }
 

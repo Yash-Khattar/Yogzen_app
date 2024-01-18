@@ -12,7 +12,6 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
-	// "go.mongodb.org/mongo-driver/mongo/options"
 )
 
 type SignedDetails struct {
@@ -62,11 +61,7 @@ func UpdateAllToken(signedToken string, signedRefreshToken string, userId string
 	Updated_at, _ := time.Parse(time.RFC3339, time.Now().Format(time.RFC3339))
 	updateObj = append(updateObj, bson.E{"updatedat", Updated_at})
 
-	// upsert := true
 	filter := bson.M{"userid": userId}
-	// opt := options.UpdateOptions{
-	// 	// Upsert: &upsert,
-	// }
 
 	_, err := userCollection.UpdateOne(
 		ctx,
@@ -74,7 +69,6 @@ func UpdateAllToken(signedToken string, signedRefreshToken string, userId string
 		bson.D{
 			{"$set", updateObj},
 		},
-		// &opt,
 	)
 
 	if err != nil {

@@ -15,17 +15,14 @@ func Authenticate() gin.HandlerFunc {
 		clientToken := c.Request.Header.Get("token")
 		if clientToken == "" {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "no authrization headers provided"})
-
 			c.Abort()
 			return
 		}
-
 		claims, err := helper.ValidateToken(clientToken)
 		if err != "" {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": err})
 			c.Abort()
 			return
-
 		}
 		c.Set("email", claims.Email)
 		c.Set("name", claims.Name)

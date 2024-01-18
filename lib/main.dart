@@ -3,11 +3,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:yogzen/components/nav_bar_screen.dart';
 import 'package:yogzen/global/color.dart';
+import 'package:yogzen/providers/challenge_provider.dart';
 import 'package:yogzen/providers/user_provider.dart';
 import 'package:yogzen/providers/yoga_provider.dart';
 import 'package:yogzen/screens/auth/auth_screen.dart';
 import 'package:yogzen/screens/chatbot.dart/chatbot.dart';
-import 'package:yogzen/screens/chatbot.dart/components/bottome_page.dart';
 import 'package:yogzen/screens/meditation/meditation_screen.dart';
 import 'package:yogzen/screens/specific_needs/components/search_screen.dart';
 import 'package:yogzen/screens/splash/splash_screen.dart';
@@ -20,6 +20,7 @@ void main() {
       providers: [
         ChangeNotifierProvider(create: (context) => UserProvider()),
         ChangeNotifierProvider(create: (context) => YogaProvider()),
+        ChangeNotifierProvider(create: (context) => ChallengeProvider()),
       ],
       child: MyApp(),
     ),

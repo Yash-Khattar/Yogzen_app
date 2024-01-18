@@ -2,16 +2,13 @@ package main
 
 import (
 	"fmt"
-	"net/http"
-	"sync"
-	"time"
-
-	// "github/Yash-Khattar/yogzen-server/router"
 	controller "github/Yash-Khattar/yogzen-server/controller"
 	routes "github/Yash-Khattar/yogzen-server/routes"
-	"os"
-
 	"log"
+	"net/http"
+	"os"
+	"sync"
+	"time"
 
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
@@ -75,5 +72,5 @@ func ActivateRender() {
 		fmt.Println(err)
 	}
 	defer res.Body.Close()
-	fmt.Println("Activated Render")
+
 }

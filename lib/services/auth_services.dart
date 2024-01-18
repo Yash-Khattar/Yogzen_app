@@ -47,11 +47,19 @@ class AuthServices {
       userType: "USER",
       token: "",
     );
+    final RegExp _emailRegExp = RegExp(
+      r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$',
+    );
 
     var url = Uri.parse('$baseUrl/users/signup');
     try {
       if (email == "") {
         showSnackBar(context: context, text: "Email cannot be empty");
+        return false;
+      }
+
+      if (!_emailRegExp.hasMatch(email)) {
+        showSnackBar(context: context, text: "Email is not valid");
         return false;
       }
 

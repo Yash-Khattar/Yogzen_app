@@ -57,6 +57,8 @@ class _SearchScreenState extends State<SearchScreen> {
                             .toList();
                       });
                       _searchFocus.unfocus();
+                      print(filteredYogas.length);
+                      print(filteredYogas[0].name);
                     },
                     focusNode: _searchFocus,
                     autofocus: true,
@@ -101,10 +103,14 @@ class _SearchScreenState extends State<SearchScreen> {
                   height: 48,
                 ),
                 filteredYogas.isEmpty
-                    ? Center(child: Padding(
-                      padding: const EdgeInsets.only(right: 16),
-                      child: Text("Search for Yoga Aasanas!", style: TextStyle(color: Colors.black45),),
-                    ))
+                    ? Center(
+                        child: Padding(
+                        padding: const EdgeInsets.only(right: 16),
+                        child: Text(
+                          "Search for Yoga Aasanas!",
+                          style: TextStyle(color: Colors.black45),
+                        ),
+                      ))
                     : SizedBox(
                         height: height * 0.7,
                         child: ListView.builder(
@@ -116,12 +122,12 @@ class _SearchScreenState extends State<SearchScreen> {
                               height: height * 0.1,
                               child: Padding(
                                 padding: const EdgeInsets.only(bottom: 16),
-                                child: YogaCardSN(yoga: yogaData[index]),
+                                child: YogaCardSN(yoga: filteredYogas[index]),
                               ),
                             );
                           },
                         ),
-                      )
+                      ),
               ],
             ),
           ),

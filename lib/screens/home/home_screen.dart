@@ -19,6 +19,27 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   late PageController pageController;
+  String _greeting = '';
+
+  void _updateGreeting() {
+    DateTime now = DateTime.now();
+    int hour = now.hour;
+
+    if (hour < 12) {
+      setState(() {
+        _greeting = 'Good Morning';
+      });
+    } else if (hour < 17) {
+      setState(() {
+        _greeting = 'Good Afternoon';
+      });
+    } else {
+      setState(() {
+        _greeting = 'Good Evening';
+      });
+    }
+  }
+
   @override
   void initState() {
     pageController = PageController(
@@ -26,6 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
       viewportFraction: 0.8,
     );
     super.initState();
+    _updateGreeting();
   }
 
   @override
@@ -49,13 +71,6 @@ class _HomeScreenState extends State<HomeScreen> {
               height: height * 0.3,
               width: width,
               decoration: const BoxDecoration(
-                // image: DecorationImage(
-                //   opacity: 0.3,
-                //   image: Image.asset(
-                //     "assets/mountain.jpeg",
-                //   ).image,
-                //   fit: BoxFit.cover,
-                // ),
 
                 color: kdarkBlue,
               ),
@@ -66,37 +81,18 @@ class _HomeScreenState extends State<HomeScreen> {
                     padding: const EdgeInsets.only(top: 30, left: 12),
                     child: Row(
                       children: [
-                        // IconButton(
-                        //   onPressed: () {},
-                        //   icon: CircleAvatar(
-                        //     backgroundImage: Image.asset(
-                        //       "assets/profile.png",
-                        //       fit: BoxFit.fill,
-                        //     ).image,
-                        //     // backgroundColor: kdarkBlue,
-                        //     radius: 28,
-                        //   ),
-                        // ),
-
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Good Morning, ${user.name}',
+                              '$_greeting, ${user.name}',
                               style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 18,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
-                            // Text(
-                            //   'Good Morning!',
-                            //   style: TextStyle(
-                            //     color: Colors.white,
-                            //     fontSize: 14,
-                            //     fontWeight: FontWeight.w400,
-                            //   ),
-                            // ),
+                            
                           ],
                         ),
                       ],

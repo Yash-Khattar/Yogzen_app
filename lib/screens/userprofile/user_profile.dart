@@ -6,8 +6,6 @@ import 'package:yogzen/providers/user_provider.dart';
 import 'package:yogzen/screens/userprofile/userProfileButtons.dart';
 
 import '../../components/chat_button.dart';
-import '../chatbot.dart/chatbot.dart';
-import '../chatbot.dart/components/bottome_page.dart';
 
 class UserProfileScreen extends StatefulWidget {
   const UserProfileScreen({super.key});
@@ -21,13 +19,12 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
   Widget build(BuildContext context) {
     final user = Provider.of<UserProvider>(context).user;
     final height = MediaQuery.of(context).size.height;
-    final width = MediaQuery.of(context).size.width;
     return Scaffold(
       floatingActionButton: const ChatButton(),
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: kdarkBlue,
-        title: Text(
+        title: const Text(
           "Profile",
           style: TextStyle(
             color: Colors.white,
@@ -36,20 +33,18 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
       ),
       backgroundColor: klightBlue,
       body: Padding(
-        padding: EdgeInsets.fromLTRB(20, 15, 20, 0),
+        padding: const EdgeInsets.fromLTRB(20, 15, 20, 0),
         child: Column(
           children: [
             SizedBox(height: height * 0.02),
             Center(
               child: RippleAnimation(
                 color: kdarkBlue,
-                // delay: const Duration(milliseconds: 300),
+                
                 repeat: true,
-                // minRadius: 60,
-                // ripplesCount: 6,
-                // duration: const Duration(milliseconds: 6 * 300),
+                
                 child: CircleAvatar(
-                  backgroundImage: AssetImage('assets/UserImage.jpeg'),
+                  backgroundImage: const AssetImage('assets/UserImage.jpeg'),
                   radius: height * 0.1,
                 ),
               ),
@@ -58,24 +53,24 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
             Container(
               child: Text(
                 '${user.name}',
-                style: TextStyle(
-                  //fontWeight: FontWeight.bold,
+                style: const TextStyle(
+                  
                   fontSize: 25,
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 5,
             ),
             Container(
               child: Text(
                 '${user.email}',
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 15,
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Expanded(child: UserProfileButtons(title: '', onPressed: () {})),

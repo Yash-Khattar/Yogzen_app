@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:yogzen/components/yoga_card.dart';
 import 'package:yogzen/screens/specific_needs/components/yoga_card_sn.dart';
 
 import '../../../global/color.dart';
@@ -21,7 +20,6 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget build(BuildContext context) {
     final yogaData = Provider.of<YogaProvider>(context, listen: false).yogaData;
     final height = MediaQuery.of(context).size.height;
-    final width = MediaQuery.of(context).size.width;
     final _searchFocus = FocusNode();
     final _searchText = TextEditingController();
     return SafeArea(
@@ -33,7 +31,7 @@ class _SearchScreenState extends State<SearchScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   'Find your Yoga',
                   style: TextStyle(
                     color: kdarkBlue,
@@ -41,7 +39,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Padding(
@@ -75,7 +73,7 @@ class _SearchScreenState extends State<SearchScreen> {
                           borderRadius: BorderRadius.circular(8),
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
                             strokeAlign: BorderSide.strokeAlignOutside,
                             color: kdarkBlue,
                             width: 2,
@@ -87,25 +85,17 @@ class _SearchScreenState extends State<SearchScreen> {
                         hintStyle: TextStyle(
                             color: kdarkBlueMuted, fontWeight: FontWeight.w500),
                         prefixIcon: Icon(Icons.search, color: kdarkBlueMuted),
-                        // border: OutlineInputBorder(
-                        //   borderSide: BorderSide(
-                        //     strokeAlign: BorderSide.strokeAlignOutside,
-                        //     color: Colors.black12,
-                        //     width: 1,
-                        //   ),
-                        //   borderRadius: BorderRadius.circular(8),
-                        // ),
                         contentPadding:
-                            EdgeInsets.symmetric(vertical: 4, horizontal: 4)),
+                            const EdgeInsets.symmetric(vertical: 4, horizontal: 4)),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 48,
                 ),
                 filteredYogas.isEmpty
-                    ? Center(
+                    ? const Center(
                         child: Padding(
-                        padding: const EdgeInsets.only(right: 16),
+                        padding: EdgeInsets.only(right: 16),
                         child: Text(
                           "Search for Yoga Aasanas!",
                           style: TextStyle(color: Colors.black45),
@@ -115,7 +105,7 @@ class _SearchScreenState extends State<SearchScreen> {
                         height: height * 0.7,
                         child: ListView.builder(
                           scrollDirection: Axis.vertical,
-                          padding: EdgeInsets.fromLTRB(0, 0, 16, 0),
+                          padding: const EdgeInsets.fromLTRB(0, 0, 16, 0),
                           itemCount: filteredYogas.length,
                           itemBuilder: (context, index) {
                             return SizedBox(

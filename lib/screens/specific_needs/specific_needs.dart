@@ -20,7 +20,6 @@ class _SpecificNeedsScreenState extends State<SpecificNeedsScreen> {
   Widget build(BuildContext context) {
     final yogaData = Provider.of<YogaProvider>(context, listen: false).yogaData;
     final height = MediaQuery.of(context).size.height;
-    final width = MediaQuery.of(context).size.width;
     final _searchFocus = FocusNode();
     return SafeArea(
       child: Scaffold(
@@ -32,7 +31,7 @@ class _SpecificNeedsScreenState extends State<SpecificNeedsScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   'Find your Yoga',
                   style: TextStyle(
                     color: kdarkBlue,
@@ -40,7 +39,7 @@ class _SpecificNeedsScreenState extends State<SpecificNeedsScreen> {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Padding(
@@ -64,7 +63,7 @@ class _SpecificNeedsScreenState extends State<SpecificNeedsScreen> {
                           borderRadius: BorderRadius.circular(8),
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
                             strokeAlign: BorderSide.strokeAlignOutside,
                             color: kdarkBlue,
                             width: 2,
@@ -76,31 +75,23 @@ class _SpecificNeedsScreenState extends State<SpecificNeedsScreen> {
                         hintStyle: TextStyle(
                             color: kdarkBlueMuted, fontWeight: FontWeight.w500),
                         prefixIcon: Icon(Icons.search, color: kdarkBlueMuted),
-                        // border: OutlineInputBorder(
-                        //   borderSide: BorderSide(
-                        //     strokeAlign: BorderSide.strokeAlignOutside,
-                        //     color: Colors.black12,
-                        //     width: 1,
-                        //   ),
-                        //   borderRadius: BorderRadius.circular(8),
-                        // ),
                         contentPadding:
-                            EdgeInsets.symmetric(vertical: 4, horizontal: 4)),
+                            const EdgeInsets.symmetric(vertical: 4, horizontal: 4)),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 48,
                 ),
                 Text("Recommended for You",
                     style: Theme.of(context).textTheme.headlineMedium),
-                SizedBox(
+                const SizedBox(
                   height: 16,
                 ),
                 SizedBox(
                   height: height * 0.2,
                   child: GridView.builder(
-                    padding: EdgeInsets.all(8),
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    padding: const EdgeInsets.all(8),
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisSpacing: 16,
                         mainAxisSpacing: 16,
                         childAspectRatio: 0.320,
@@ -113,18 +104,18 @@ class _SpecificNeedsScreenState extends State<SpecificNeedsScreen> {
                     scrollDirection: Axis.horizontal,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 48,
                 ),
                 Text("Yoga Routines by Experts",
                     style: Theme.of(context).textTheme.headlineMedium),
-                SizedBox(
+                const SizedBox(
                   height: 16,
                 ),
                 SizedBox(
                   height: height * 0.26,
                   child: ListView.builder(
-                    padding: EdgeInsets.all(8),
+                    padding: const EdgeInsets.all(8),
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: const EdgeInsets.fromLTRB(0, 0, 16, 0),
@@ -135,19 +126,19 @@ class _SpecificNeedsScreenState extends State<SpecificNeedsScreen> {
                     scrollDirection: Axis.horizontal,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 48,
                 ),
                 Text("For Back Pain",
                     style: Theme.of(context).textTheme.headlineMedium),
-                SizedBox(
+                const SizedBox(
                   height: 16,
                 ),
                 SizedBox(
                   height: height * 0.2,
                   child: GridView.builder(
-                    padding: EdgeInsets.all(8),
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    padding: const EdgeInsets.all(8),
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisSpacing: 16,
                         mainAxisSpacing: 16,
                         childAspectRatio: 0.320,

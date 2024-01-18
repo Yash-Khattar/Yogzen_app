@@ -17,7 +17,7 @@ class ChatButton extends StatelessWidget {
           page: ChatScreen(),
         ),
       ),
-      child: CircleAvatar(
+      child: const CircleAvatar(
         backgroundColor: kdarkBlue,
         radius: 32,
         child: Icon(

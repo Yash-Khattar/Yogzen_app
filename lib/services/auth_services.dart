@@ -177,8 +177,6 @@ class AuthServices {
             Provider.of<UserProvider>(context, listen: false)
                 .setUser(response.body);
           });
-      // var userProvider = Provider.of<UserProvider>(context, listen: false);
-      // userProvider.setUser(response.body);
     } catch (e) {
       showSnackBar(context: context, text: e.toString());
     }

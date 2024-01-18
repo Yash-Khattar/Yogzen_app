@@ -2,10 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
-import 'package:provider/provider.dart';
 import 'package:yogzen/global/color.dart';
 import 'package:yogzen/models/yoga.dart';
-import 'package:yogzen/providers/challenge_provider.dart';
 
 class YogaScreen extends StatefulWidget {
   static String routeName = "/yoga";
@@ -72,7 +70,6 @@ class _YogaScreenState extends State<YogaScreen> {
   @override
   Widget build(BuildContext context) {
     Yoga yoga = ModalRoute.of(context)!.settings.arguments as Yoga;
-   
     return Scaffold(
       backgroundColor: klightBlue,
       body: Column(

@@ -14,7 +14,7 @@ func Authenticate() gin.HandlerFunc {
 		log.Println("Inside Authenticate()")
 		clientToken := c.Request.Header.Get("token")
 		if clientToken == "" {
-			c.JSON(http.StatusInternalServerError, gin.H{"error": "no authrization headers provided"})
+			c.JSON(http.StatusInternalServerError, gin.H{"error": ""})
 			c.Abort()
 			return
 		}

@@ -48,7 +48,7 @@ class _ChatScreenState extends State<ChatScreen> {
     return Scaffold(
       backgroundColor: klightBlue,
       appBar: AppBar(
-        title: Text('Yog Guru'),
+        title: const Text('Yog Guru'),
         backgroundColor: klightBlue,
         scrolledUnderElevation: 0,
       ),
@@ -58,7 +58,7 @@ class _ChatScreenState extends State<ChatScreen> {
           children: <Widget>[
             Expanded(
               child: ListView.builder(
-                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                 reverse: true,
                 itemCount: _chatBubbles.length,
                 itemBuilder: (_, int index) =>
@@ -66,7 +66,7 @@ class _ChatScreenState extends State<ChatScreen> {
               ),
             ),
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 8.0),
+              margin: const EdgeInsets.symmetric(horizontal: 8.0),
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
               child: TextField(
                 controller: _controller,
@@ -77,31 +77,31 @@ class _ChatScreenState extends State<ChatScreen> {
                 decoration: InputDecoration(
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(16),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: kdarkBlue,
                       width: 1,
                     ),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(16),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: kdarkBlue,
                       width: 1,
                     ),
                   ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(16),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: kdarkBlue,
                       width: 1,
                     ),
                   ),
-                  contentPadding: EdgeInsets.all(8),
+                  contentPadding: const EdgeInsets.all(8),
                   hintText: 'Ask something about Yoga.',
-                  hintStyle: TextStyle(color: kdarkBlue),
+                  hintStyle: const TextStyle(color: kdarkBlue),
                   suffixIcon: IconButton(
                     onPressed: _handleSubmitted,
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.send,
                       size: 28,
                     ),
@@ -110,9 +110,8 @@ class _ChatScreenState extends State<ChatScreen> {
                       ? kdarkBlueMuted.withOpacity(0.5)
                       : kdarkBlue,
                 ),
-                // style: TextStyle(overflow: TextOverflow.visible),
                 maxLines: 1,
-                // expands: true,
+                
               ),
             ),
           ],

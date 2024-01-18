@@ -94,13 +94,6 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                     child: Container(
                       child: Image.asset('assets/welcome.png'),
                       decoration: BoxDecoration(
-                          // boxShadow: [
-                          //   BoxShadow(
-                          //     color: Colors.black.withOpacity(0.1),
-                          //     offset: const Offset(8, 20),
-                          //     blurRadius: 24,
-                          //   ),
-                          // ],
                           ),
                     ),
                   ),

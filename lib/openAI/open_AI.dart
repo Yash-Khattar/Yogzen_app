@@ -23,7 +23,7 @@ final List<String> yogaPhrases = [
 
 Future<String> fetchYogaPose(String question) async {
     
-    final String apiUrl = 'https://api.openai.com/v1/chat/completions';
+    const String apiUrl = 'https://api.openai.com/v1/chat/completions';
 
     final Map<String, String> headers = {
       'Content-Type': 'application/json',
@@ -31,8 +31,6 @@ Future<String> fetchYogaPose(String question) async {
     };
   // final String question = "Tell me something that is good for mental and physical health.";
   final String prompt = 'Is the following topic related to yoga? Answer in yes or no and then generate the answer in 50 words only if the question is related to yoga.$question';
-
-  // l.add({"role": "user", "content": prompt});
 
     final Map<String, dynamic> data = {
       'messages' : [{"role": "user", "content": prompt}],
@@ -50,7 +48,7 @@ Future<String> fetchYogaPose(String question) async {
     // print(response.body);
     
     Map<String, dynamic> jsonResponse = json.decode(response.body);
-    print(jsonResponse);
+    //print(jsonResponse);
 
     String content = jsonResponse["choices"][0]["message"]["content"];
 
@@ -70,7 +68,7 @@ Future<String> fetchYogaPose(String question) async {
       }
     }
 
-    print(content);
+    //print(content);
     // print(l);
 
     if (response.statusCode == 200) {

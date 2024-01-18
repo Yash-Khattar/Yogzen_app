@@ -64,7 +64,6 @@ class _AuthScreenState extends State<AuthScreen> with TickerProviderStateMixin {
     super.dispose();
   }
 
-// - 120 + MediaQuery.sizeOf(context).height * 0.76
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -155,12 +154,10 @@ class _AuthScreenState extends State<AuthScreen> with TickerProviderStateMixin {
                   ],
                   indicator: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
-                    // color: kdarkBlue,
                   ),
                   controller: _tabController,
                   isScrollable: true,
 
-                  // labelPadding: EdgeInsets.symmetric(horizontal: 40, vertical: 4),
                 ),
               ),
             ),

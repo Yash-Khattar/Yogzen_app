@@ -74,10 +74,10 @@ class _SignupState extends State<Signup> {
               ),
               child: Center(
                 child: isSignupTapped
-                    ? CircularProgressIndicator(
+                    ? const CircularProgressIndicator(
                         color: Colors.white,
                       )
-                    : Text(
+                    : const Text(
                         "Sign Up",
                         style: TextStyle(color: Colors.white),
                       ),

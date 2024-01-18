@@ -10,7 +10,6 @@ class YogaCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return GestureDetector(
       onTap: () {
@@ -45,7 +44,7 @@ class YogaCard extends StatelessWidget {
           Positioned(
             bottom: 0,
             child: Container(
-              padding: EdgeInsets.only(left: 16, right: 8, top: 16, bottom: 8),
+              padding: const EdgeInsets.only(left: 16, right: 8, top: 16, bottom: 8),
               width: width,
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -54,7 +53,7 @@ class YogaCard extends StatelessWidget {
                     Colors.white.withOpacity(0),
                     Colors.white.withOpacity(0.8),
                   ],
-                  stops: [0, 0.3],
+                  stops: const [0, 0.3],
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                 ),
@@ -98,4 +97,3 @@ class YogaCard extends StatelessWidget {
       ),
     );
   }
-}

@@ -20,7 +20,7 @@ class yogaChallengeCard extends StatelessWidget {
       child: ListTile(
         title: Text(
           'Day $day',
-          style: TextStyle(
+          style: const TextStyle(
             fontWeight: FontWeight.bold,
           ),
         ),

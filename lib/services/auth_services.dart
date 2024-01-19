@@ -23,14 +23,7 @@ class AuthServices {
         print(response.body);
         print(response.statusCode);
       }
-      if (response.statusCode == 200) {
-        print("success");
-      } else {
-        print("failed");
-      }
-    } catch (e) {
-      print(e);
-    }
+    } catch (e) {}
   }
 
 //signup
@@ -120,7 +113,7 @@ class AuthServices {
           headers: <String, String>{
             "Content-Type": "application/json; charset=UTF-8"
           });
-      print(response.body);
+
       if (context.mounted) {
         httpErrorHandling(
             context: context,

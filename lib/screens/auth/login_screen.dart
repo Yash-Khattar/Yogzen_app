@@ -64,7 +64,9 @@ class _LoginState extends State<Login> {
               ),
               child: Center(
                 child: isLoginTapped
-                    ? CircularProgressIndicator()
+                    ? CircularProgressIndicator(
+                      color: Colors.white,
+                    )
                     : Text(
                         "Log In",
                         style: TextStyle(color: Colors.white),

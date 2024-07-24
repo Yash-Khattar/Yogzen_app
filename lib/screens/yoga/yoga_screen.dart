@@ -103,7 +103,7 @@ class _YogaScreenState extends State<YogaScreen> {
                   child: Text(
                     yoga.name,
                     style: const TextStyle(
-                      color: Colors.white,
+                      color: Colors.black,
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
                     ),

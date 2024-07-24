@@ -25,7 +25,7 @@ class _MeditationState extends State<Meditation> {
 
   @override
   void dispose() {
-    pageController!.dispose();
+    pageController.dispose();
     super.dispose();
   }
 

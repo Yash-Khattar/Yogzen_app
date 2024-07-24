@@ -17,27 +17,25 @@ class YogaCard extends StatelessWidget {
       },
       child: Stack(
         children: [
-          Expanded(
-            child: Container(
-              clipBehavior: Clip.none,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16),
-                boxShadow: const [
-                  BoxShadow(
-                    blurRadius: 4,
-                    spreadRadius: 0,
-                    offset: Offset(2, 2),
-                    color: Colors.black26,
-                  ),
-                ],
-              ),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(16),
-                child: Image.network(
-                  yoga.imageUrl,
-
-                  // fit: BoxFit.cover,
+          Container(
+            clipBehavior: Clip.none,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+              boxShadow: const [
+                BoxShadow(
+                  blurRadius: 4,
+                  spreadRadius: 0,
+                  offset: Offset(2, 2),
+                  color: Colors.black26,
                 ),
+              ],
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(16),
+              child: Image.network(
+                yoga.imageUrl,
+          
+                // fit: BoxFit.cover,
               ),
             ),
           ),
